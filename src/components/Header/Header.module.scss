@@ -1,10 +1,10 @@
 @import '../../styles/shared-styles/variables';
 
 .Nav {
+	position: sticky;
 	height: 6rem;
 	display: flex;
 	border-bottom: 1px solid $gray;
-	// box-shadow: 0 0 0.5rem #000;
 	display: flex;
 	align-items: center;
 	justify-content: space-between; // Align left?

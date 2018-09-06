@@ -1,0 +1,8 @@
+@import '../styles//shared-styles//variables';
+
+.App {
+	width: $container-default-width;
+	margin: 0 auto;
+	display: grid;
+	height: 100vh;
+}

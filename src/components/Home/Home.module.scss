@@ -1,0 +1,15 @@
+.Home {
+	height: 100%;
+	position: relative;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 32rem 32rem 32rem;
+	grid-gap: 1.5rem;
+	grid-auto-rows: 32rem;
+	grid-auto-flow: row dense;
+
+	& div:nth-of-type(4n) {
+		grid-column: 1 / 3;
+	}
+}
