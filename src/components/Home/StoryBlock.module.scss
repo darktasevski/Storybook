@@ -4,15 +4,40 @@
 	text-align: center;
 	border: 1px solid black;
 	position: relative;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	background: rgba(255, 222, 222, 0.5);
+
+	&__link {
+		color: $primary-light;
+		font-family: $primary-font-family;
+		font-weight: 400;
+		font-style: italic;
+		margin-right: 3rem;
+	}
 
 	&__info {
+		width: calc(100% - 4rem);
 		position: absolute;
-		bottom: 0;
-		left: 0;
-		top: 0;
-		right: 0;
-		background: rgba(255, 222, 222, 0.5);
-		color: $text-dark;
+		color: $primary-light;
+		font-weight: 400;
+		font-family: $heading-font-family;
+		letter-spacing: 0.3rem;
+		bottom: 2rem;
+		left: 4rem;
+		text-align: start;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+
+		& p {
+			font-family: $primary-font-family;
+			font-weight: 400;
+			font-style: italic;
+			font-size: 80%;
+		}
 	}
 
 	& img {
