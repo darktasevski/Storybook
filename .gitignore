@@ -19,3 +19,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#ignore CSS files (we use SASS > CSS Modules so we don't need to watch for .css)
+*.css

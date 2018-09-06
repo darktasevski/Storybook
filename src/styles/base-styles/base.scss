@@ -1,15 +1,43 @@
 @import '../shared-styles/variables';
+@import '../shared-styles/mixins';
+
+html {
+	font-size: $font-size-base;
+
+	@include respond(big-desktop) {
+		// 1rem = 12px; 12/16 = 75%; width > 1800?;
+		font-size: 75%;
+	}
+	@include respond(tab-land) {
+		// 1rem = 9px; 9/16 = 56.25%; width < 1200?;
+		font-size: 56.25%;
+	}
+	@include respond(tab-port) {
+		// 1rem = 8px; 8/16 = 50%; width < 900?;
+		font-size: 50%;
+	}
+}
 
 body {
 	background: $bg;
-	font-family: 'Roboto', sans-serif;
+	font-family: $primary-font-family;
+	font-size: $default-font-size;
+	line-height: $line-height-base;
+	color: $secondary-dark;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
 
-	& > * {
-		box-sizing: inherit;
-		margin: 0;
-		padding: 0;
-	}
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: $text-dark;
 }

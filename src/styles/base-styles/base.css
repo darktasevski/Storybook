@@ -1,14 +1,53 @@
 /* Colors related variables */
 /* Numbers related variables */
+/*
+Media query manager mixin
+0-600px:    Phone
+600-900px:  Tablet-portrait mode
+900-1200px:  Tablet-landscape mode
+1200-1800px:  Desktop - this is where all current styles apply
+1800px:  xlDesktop
+1em === 16px
+*/
+html {
+	font-size: 62.5%;
+}
+@media (min-width: 112.5em) {
+	html {
+		font-size: 75%;
+	}
+}
+@media (max-width: 75em) {
+	html {
+		font-size: 56.25%;
+	}
+}
+@media (max-width: 56.25em) {
+	html {
+		font-size: 50%;
+	}
+}
+
 body {
-	background: #dff;
-	font-family: 'Roboto', sans-serif;
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.6rem;
+	line-height: 1.7;
+	color: #857e89;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
-body > * {
+
+*,
+*::before,
+*::after {
 	box-sizing: inherit;
 	margin: 0;
 	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #202124;
 }
