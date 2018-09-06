@@ -1,0 +1,14 @@
+/* Colors related variables */
+/* Numbers related variables */
+body {
+	background: #dff;
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body > * {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}

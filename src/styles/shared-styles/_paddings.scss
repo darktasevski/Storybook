@@ -1,0 +1,111 @@
+/* Paddings helpers */
+@import './variables';
+
+.paddingT {
+	&--xxs {
+		padding-top: $xxs;
+	}
+	&--xs {
+		padding-top: $xs;
+	}
+	&--sm {
+		padding-top: $sm;
+	}
+	&--md {
+		padding-top: $md;
+	}
+	&--lg {
+		padding-top: $lg;
+	}
+	&--xxl {
+		padding-top: $xxl;
+	}
+}
+
+.paddingB {
+	&--xxs {
+		padding-bottom: $xxs;
+	}
+	&--xs {
+		padding-bottom: $xs;
+	}
+	&--sm {
+		padding-bottom: $sm;
+	}
+	&--md {
+		padding-bottom: $md;
+	}
+	&--lg {
+		padding-bottom: $lg;
+	}
+	&--xxl {
+		padding-bottom: $xxl;
+	}
+}
+
+.paddingL {
+	&--xxs {
+		padding-left: $xxs;
+	}
+	&--xs {
+		padding-left: $xs;
+	}
+	&--sm {
+		padding-left: $sm;
+	}
+	&--md {
+		padding-left: $md;
+	}
+	&--lg {
+		padding-left: $lg;
+	}
+	&--xxl {
+		padding-left: $xxl;
+	}
+}
+
+.paddingR {
+	&--xxs {
+		padding-right: $xxs;
+	}
+	&--xs {
+		padding-right: $xs;
+	}
+	&--sm {
+		padding-right: $sm;
+	}
+	&--md {
+		padding-right: $md;
+	}
+	&--lg {
+		padding-right: $lg;
+	}
+	&--xxl {
+		padding-right: $xxl;
+	}
+}
+
+.paddingALL {
+	&--xxs {
+		padding: $xxs;
+	}
+	&--xs {
+		padding: $xs;
+	}
+	&--sm {
+		padding: $sm;
+	}
+	&--md {
+		padding: $md;
+	}
+	&--lg {
+		padding: $lg;
+	}
+	&--xxl {
+		padding: $xxl;
+	}
+}
+
+.noMargin {
+	padding: 0;
+}

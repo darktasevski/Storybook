@@ -1,0 +1,111 @@
+/* Margins helpers */
+@import './variables';
+
+.marginT {
+	&--xxs {
+		margin-top: $xxs;
+	}
+	&--xs {
+		margin-top: $xs;
+	}
+	&--sm {
+		margin-top: $sm;
+	}
+	&--md {
+		margin-top: $md;
+	}
+	&--lg {
+		margin-top: $lg;
+	}
+	&--xxl {
+		margin-top: $xxl;
+	}
+}
+
+.marginB {
+	&--xxs {
+		margin-bottom: $xxs;
+	}
+	&--xs {
+		margin-bottom: $xs;
+	}
+	&--sm {
+		margin-bottom: $sm;
+	}
+	&--md {
+		margin-bottom: $md;
+	}
+	&--lg {
+		margin-bottom: $lg;
+	}
+	&--xxl {
+		margin-bottom: $xxl;
+	}
+}
+
+.marginL {
+	&--xxs {
+		margin-left: $xxs;
+	}
+	&--xs {
+		margin-left: $xs;
+	}
+	&--sm {
+		margin-left: $sm;
+	}
+	&--md {
+		margin-left: $md;
+	}
+	&--lg {
+		margin-left: $lg;
+	}
+	&--xxl {
+		margin-left: $xxl;
+	}
+}
+
+.marginR {
+	&--xxs {
+		margin-right: $xxs;
+	}
+	&--xs {
+		margin-right: $xs;
+	}
+	&--sm {
+		margin-right: $sm;
+	}
+	&--md {
+		margin-right: $md;
+	}
+	&--lg {
+		margin-right: $lg;
+	}
+	&--xxl {
+		margin-right: $xxl;
+	}
+}
+
+.marginALL {
+	&--xxs {
+		margin: $xxs;
+	}
+	&--xs {
+		margin: $xs;
+	}
+	&--sm {
+		margin: $sm;
+	}
+	&--md {
+		margin: $md;
+	}
+	&--lg {
+		margin: $lg;
+	}
+	&--xxl {
+		margin: $xxl;
+	}
+}
+
+.noMargin {
+	margin: 0;
+}

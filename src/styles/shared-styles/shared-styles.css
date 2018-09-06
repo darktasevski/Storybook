@@ -1,0 +1,289 @@
+/* All helper classes (shared styles) (combine those to build UI) */
+/* Animation helpers */
+.pulseAnimation {
+	display: inline-block;
+	animation: pulse 2s infinite linear;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.spinAnimation {
+	display: inline-block;
+	animation: spin 800ms infinite linear;
+	position: relative;
+	left: -5px;
+	top: 1px;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Margins helpers */
+/* Colors related variables */
+/* Numbers related variables */
+.marginT--xxs {
+	margin-top: 5px;
+}
+
+.marginT--xs {
+	margin-top: 10px;
+}
+
+.marginT--sm {
+	margin-top: 15px;
+}
+
+.marginT--md {
+	margin-top: 20px;
+}
+
+.marginT--lg {
+	margin-top: 25px;
+}
+
+.marginT--xxl {
+	margin-top: 30px;
+}
+
+.marginB--xxs {
+	margin-bottom: 5px;
+}
+
+.marginB--xs {
+	margin-bottom: 10px;
+}
+
+.marginB--sm {
+	margin-bottom: 15px;
+}
+
+.marginB--md {
+	margin-bottom: 20px;
+}
+
+.marginB--lg {
+	margin-bottom: 25px;
+}
+
+.marginB--xxl {
+	margin-bottom: 30px;
+}
+
+.marginL--xxs {
+	margin-left: 5px;
+}
+
+.marginL--xs {
+	margin-left: 10px;
+}
+
+.marginL--sm {
+	margin-left: 15px;
+}
+
+.marginL--md {
+	margin-left: 20px;
+}
+
+.marginL--lg {
+	margin-left: 25px;
+}
+
+.marginL--xxl {
+	margin-left: 30px;
+}
+
+.marginR--xxs {
+	margin-right: 5px;
+}
+
+.marginR--xs {
+	margin-right: 10px;
+}
+
+.marginR--sm {
+	margin-right: 15px;
+}
+
+.marginR--md {
+	margin-right: 20px;
+}
+
+.marginR--lg {
+	margin-right: 25px;
+}
+
+.marginR--xxl {
+	margin-right: 30px;
+}
+
+.marginALL--xxs {
+	margin: 5px;
+}
+
+.marginALL--xs {
+	margin: 10px;
+}
+
+.marginALL--sm {
+	margin: 15px;
+}
+
+.marginALL--md {
+	margin: 20px;
+}
+
+.marginALL--lg {
+	margin: 25px;
+}
+
+.marginALL--xxl {
+	margin: 30px;
+}
+
+.noMargin {
+	margin: 0;
+}
+
+/* Paddings helpers */
+/* Colors related variables */
+/* Numbers related variables */
+.paddingT--xxs {
+	padding-top: 5px;
+}
+
+.paddingT--xs {
+	padding-top: 10px;
+}
+
+.paddingT--sm {
+	padding-top: 15px;
+}
+
+.paddingT--md {
+	padding-top: 20px;
+}
+
+.paddingT--lg {
+	padding-top: 25px;
+}
+
+.paddingT--xxl {
+	padding-top: 30px;
+}
+
+.paddingB--xxs {
+	padding-bottom: 5px;
+}
+
+.paddingB--xs {
+	padding-bottom: 10px;
+}
+
+.paddingB--sm {
+	padding-bottom: 15px;
+}
+
+.paddingB--md {
+	padding-bottom: 20px;
+}
+
+.paddingB--lg {
+	padding-bottom: 25px;
+}
+
+.paddingB--xxl {
+	padding-bottom: 30px;
+}
+
+.paddingL--xxs {
+	padding-left: 5px;
+}
+
+.paddingL--xs {
+	padding-left: 10px;
+}
+
+.paddingL--sm {
+	padding-left: 15px;
+}
+
+.paddingL--md {
+	padding-left: 20px;
+}
+
+.paddingL--lg {
+	padding-left: 25px;
+}
+
+.paddingL--xxl {
+	padding-left: 30px;
+}
+
+.paddingR--xxs {
+	padding-right: 5px;
+}
+
+.paddingR--xs {
+	padding-right: 10px;
+}
+
+.paddingR--sm {
+	padding-right: 15px;
+}
+
+.paddingR--md {
+	padding-right: 20px;
+}
+
+.paddingR--lg {
+	padding-right: 25px;
+}
+
+.paddingR--xxl {
+	padding-right: 30px;
+}
+
+.paddingALL--xxs {
+	padding: 5px;
+}
+
+.paddingALL--xs {
+	padding: 10px;
+}
+
+.paddingALL--sm {
+	padding: 15px;
+}
+
+.paddingALL--md {
+	padding: 20px;
+}
+
+.paddingALL--lg {
+	padding: 25px;
+}
+
+.paddingALL--xxl {
+	padding: 30px;
+}
+
+.noMargin {
+	padding: 0;
+}
