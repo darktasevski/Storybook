@@ -1,0 +1,29 @@
+@import '../../styles/shared-styles/variables';
+
+.Footer {
+	position: relative;
+	bottom: 0;
+	height: 30rem;
+	margin: 0 -12.5%;
+	background: #202124;
+	padding-bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__content {
+		padding: $md $xxl;
+		display: flex;
+		height: 10rem;
+		justify-content: space-between;
+	}
+
+	&__bottom {
+		position: relative;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 5rem;
+		background: #1c1d20;
+	}
+}

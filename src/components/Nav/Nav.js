@@ -5,7 +5,7 @@ import styles from './Header.module.css';
 import Logo from '../Common/Logo';
 import Button from '../Common/Button';
 
-export default class Header extends Component {
+export default class Nav extends Component {
 	render() {
 		return (
 			<nav className={styles.Nav}>

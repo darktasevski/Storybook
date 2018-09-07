@@ -7,6 +7,18 @@
 	text-align: center;
 	padding: 4rem;
 
+	&__story {
+		height: 25rem;
+	}
+
+	&__social {
+		font-size: $sm;
+
+		& span:first-of-type {
+			margin-right: $sm;
+		}
+	}
+
 	& h1,
 	h2 {
 		font-style: italic;
@@ -14,5 +26,6 @@
 		letter-spacing: 0.5rem;
 		color: $text-dark;
 		font-weight: 400;
+		text-transform: capitalize;
 	}
 }

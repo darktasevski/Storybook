@@ -1,6 +1,9 @@
+@import '../../styles/shared-styles/variables';
+
 .Home {
 	height: 100%;
 	position: relative;
+	padding-bottom: calc(2 * 4rem);
 	display: grid;
 	justify-content: center;
 	grid-template-columns: repeat(2, 1fr);

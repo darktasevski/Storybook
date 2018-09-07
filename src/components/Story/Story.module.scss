@@ -1,0 +1,28 @@
+@import '../../styles/shared-styles/variables';
+
+.Story {
+	height: 100%;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: $xxl;
+
+	&__body {
+		padding: $md;
+		width: 60%;
+		justify-self: center;
+		text-align: justify;
+		font-weight: 300;
+	}
+
+	& img {
+		justify-self: center;
+		display: block;
+		object-fit: cover;
+		padding: 0 $xxl;
+		width: 70%;
+	}
+}

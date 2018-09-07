@@ -5,7 +5,7 @@ import styles from './AppRouter.module.css';
 import PublicRoute from '../components/Auth/PublicRoute';
 import PrivateRoute from '../components/Auth/PrivateRoute';
 
-import Header from '../components/Header/Header';
+import Nav from '../components/Nav/Nav';
 import Home from '../components/Home/Home';
 import Story from '../components/Story/Story';
 import EditStory from '../components/Story/EditStory';
@@ -17,7 +17,7 @@ const AppRouter = props => {
 	return (
 		<BrowserRouter>
 			<Fragment>
-				<Header isAuthenticated={props.isAuthenticated} logout={props.logout} />
+				<Nav isAuthenticated={props.isAuthenticated} logout={props.logout} />
 				<div className={styles.App}>
 					<Switch>
 						<PublicRoute exact path="/" component={Home} />

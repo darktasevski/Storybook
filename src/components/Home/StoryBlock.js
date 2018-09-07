@@ -6,7 +6,7 @@ import styles from './StoryBlock.module.css';
 export default class StoryBlock extends Component {
 	render() {
 		const { title, posterFirstName, id } = this.props.story;
-
+		const storyStr = JSON.stringify(this.props.story);
 		return (
 			<div className={styles.StoryBlock}>
 				<div className={styles.StoryBlock__info}>
@@ -14,7 +14,13 @@ export default class StoryBlock extends Component {
 						<h1>{title}</h1>
 						<p>By {posterFirstName}</p>
 					</div>
-					<Link to={`/story/${id}`} className={styles.StoryBlock__link}>
+					<Link
+						to={{
+							pathname: `/story/${id}`,
+							story: `${storyStr}`,
+						}}
+						className={styles.StoryBlock__link}
+					>
 						Read more...
 					</Link>
 				</div>
