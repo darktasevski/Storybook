@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
+import Login from './Login';
 
 export default class Auth extends Component {
 	render() {
 		return (
-			<div>
-				<form action="" />
-				<form action="" />
-			</div>
+			<Fragment>
+				<Login />
+			</Fragment>
 		);
 	}
 }

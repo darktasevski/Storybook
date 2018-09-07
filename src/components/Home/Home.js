@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import styles from './Home.module.css';
 import { fetchStories } from '../../actions/story';
+import { getUserToken } from '../../actions/auth';
 import Heading from '../Common/Heading';
 import StoryBlock from './StoryBlock';
 
@@ -13,6 +14,8 @@ class Home extends Component {
 	};
 
 	render() {
+		console.log(getUserToken('test5@test.com', 'Pass123!'));
+
 		return (
 			<div>
 				<Heading heading="Stories" subheading="That make your day" />

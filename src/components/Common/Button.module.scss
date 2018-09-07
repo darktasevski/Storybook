@@ -1,0 +1,7 @@
+@import '../../styles/shared-styles/variables';
+
+.Button {
+	background: $accent-red;
+	padding: $xxs $md;
+	color: $primary-light;
+}

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import styles from './Logo.module.css';
+
 export default class Logo extends Component {
 	render() {
 		return (
-			<div>
-				<p>Just a logo</p>
+			<div className={styles.Logo}>
+				<p className={styles.Logo__text}>StoryBook</p>
 			</div>
 		);
 	}

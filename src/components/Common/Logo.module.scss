@@ -1,0 +1,18 @@
+@import '../../styles/shared-styles/variables';
+
+.Logo {
+	background: linear-gradient(240deg, $accent-red, $accent-light);
+	padding: $xs $md;
+	color: $primary-light;
+	border: 1px solid $accent-light;
+	border-radius: 3px;
+
+	&__text {
+		display: block;
+		width: 100%;
+		text-align: center;
+		padding-bottom: 0;
+		line-height: 150%;
+		border-bottom: 2px solid $accent-light;
+	}
+}

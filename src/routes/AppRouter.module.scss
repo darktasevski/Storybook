@@ -1,9 +1,9 @@
-@import '../styles//shared-styles//variables';
+@import '../styles//shared-styles/variables';
 
 .App {
 	width: $container-default-width;
 	margin: 0 auto;
 	display: grid;
-	height: 100vh;
+	height: 90%;
 	position: relative;
 }
