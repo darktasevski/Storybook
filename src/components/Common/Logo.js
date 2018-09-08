@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Logo.module.css';
 
 const Logo = () => (
-	<div className={styles.Logo}>
+	<Link to="/" className={styles.Logo}>
 		<p className={styles.Logo__text}>StoryBook</p>
-	</div>
+	</Link>
 );
 
 export default Logo;

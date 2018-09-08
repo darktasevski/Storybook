@@ -22,3 +22,18 @@ export const fetchComments = id => async dispatch => {
 		return dispatch({ type: types.FETCH_COMMENTS_FAILURE, payload: err });
 	}
 };
+
+export const createComment = (id, commentData) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.post(`${baseURL}/api/v1/article/${id}/comment`, commentData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		return dispatch({ type: types.CREATE_COMMENT_SUCCESS, payload: data });
+	} catch (err) {
+		return dispatch({ type: types.CREATE_COMMENT_FAILURE, payload: err });
+	}
+};

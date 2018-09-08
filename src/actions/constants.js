@@ -14,6 +14,9 @@ export const types = new KeyMirror({
 	FETCH_COMMENTS_FAILURE: null,
 	CLEAR_COMMENTS: null,
 
+	CREATE_COMMENT_SUCCESS: null,
+	CREATE_COMMENT_FAILURE: null,
+
 	VALIDATE_USER_SUCCESS: null,
 	VALIDATE_USER_FAILURE: null,
 

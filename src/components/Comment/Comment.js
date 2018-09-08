@@ -8,7 +8,6 @@ import avatarImg from '../../assets/avatar.jpg';
 
 export default class Comment extends Component {
 	render() {
-		console.log(this.props);
 		const { comment } = this.props;
 		return (
 			<article className={styles.Comment}>

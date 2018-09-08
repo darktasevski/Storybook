@@ -33,6 +33,11 @@
 	padding: $xxs $md;
 	color: $primary-light;
 	font-size: 80%;
+	cursor: pointer;
+
+	&:disabled {
+		background: $gray;
+	}
 }
 
 .ProfileButton {

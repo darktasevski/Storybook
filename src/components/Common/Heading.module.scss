@@ -19,6 +19,14 @@
 		}
 	}
 
+	&__posted {
+		font-weight: 300;
+		font-size: 90%;
+		text-align: center;
+		color: $gray;
+		letter-spacing: 0.2rem;
+	}
+
 	& h1,
 	h2 {
 		font-style: italic;

@@ -36,3 +36,41 @@
 		padding-top: $xs;
 	}
 }
+
+.AddComment {
+	padding: 1rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+
+	&__error {
+		font-size: 1.2rem;
+		color: $accent-red;
+		text-align: center;
+	}
+
+	& textarea {
+		width: 100%;
+		background: $primary-light;
+		border: 1px solid $gray;
+		padding: $md;
+		color: $gray;
+		font-size: 110%;
+
+		&:focus,
+		&:active {
+			outline: 1px solid $gray;
+		}
+	}
+
+	& ::placeholder {
+		/* Chrome, Firefox, Opera, Safari 10.1+ */
+		color: $gray;
+		opacity: 1; /* Firefox */
+	}
+
+	& button {
+		margin-top: $xxs;
+	}
+}
