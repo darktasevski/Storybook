@@ -72,5 +72,9 @@
 
 	& button {
 		margin-top: $xxs;
+
+		&:disabled {
+			cursor: not-allowed;
+		}
 	}
 }

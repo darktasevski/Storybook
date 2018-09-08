@@ -11,7 +11,7 @@ import Nav from '../components/Nav/Nav';
 import Home from '../components/Home/Home';
 import Story from '../components/Story/Story';
 import EditStory from '../components/Story/EditStory';
-import Profile from '../components/User/Profile';
+import Profile from '../components/Profile/Profile';
 import EditProfile from '../components/User/EditProfile';
 import Auth from '../components/Auth/Auth';
 

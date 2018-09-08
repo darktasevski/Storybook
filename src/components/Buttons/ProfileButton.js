@@ -11,7 +11,11 @@ class ProfileButton extends Component {
 
 	closeMenu = () =>
 		this.setState({ showMenu: false }, () => {
-			document.removeEventListener('click', this.closeMenu);
+			try {
+				document.removeEventListener('click', this.closeMenu);
+			} catch (err) {
+				console.log(err);
+			}
 		});
 
 	toggleMenu = () =>

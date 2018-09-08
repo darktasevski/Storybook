@@ -20,6 +20,7 @@ export const getUserToken = (email, password, history) => async dispatch => {
 		await localStorage.setItem('token', token);
 		// Set up token expiration
 		const now = new Date();
+		console.log('now', now);
 		now.setTime(now.getTime() + 1 * 3600 * 1000);
 		await localStorage.setItem('tokenExp', now);
 		await localStorage.setItem('user', JSON.stringify(user));

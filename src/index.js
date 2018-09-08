@@ -18,12 +18,12 @@ const Root = () => (
 // Check for token
 if (localStorage.getItem('token')) {
 	const exp = localStorage.getItem('tokenExp');
-	const user = localStorage.getItem('user');
+	const user = JSON.parse(localStorage.getItem('user'));
 	// Set user and isAuthenticated
-	store.dispatch(setCurrentUser(JSON.parse(user)));
+	store.dispatch(setCurrentUser(user));
 	// Check for expired token
-	const currentTime = Date.now() / 1000;
-	if (exp < currentTime) {
+	const currentTime = Date.now();
+	if (Date.parse(exp) < currentTime) {
 		// Logout user if token has expired
 		store.dispatch(logoutUser());
 		// Clear current profile
