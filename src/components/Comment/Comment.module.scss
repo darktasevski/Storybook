@@ -1,0 +1,38 @@
+@import '../../styles/shared-styles/variables';
+
+.Comment {
+	background: $comment-bg;
+	padding: $lg;
+	margin-bottom: 1rem;
+	display: flex;
+	font-size: 80%;
+
+	& img {
+		display: block;
+		width: 6rem;
+		height: 6rem;
+		border-radius: 100%;
+	}
+
+	&__content {
+		padding: $md;
+		padding-top: 0;
+	}
+
+	&__author {
+		font-weight: 700;
+		text-transform: capitalize;
+		font-size: 110%;
+	}
+
+	&__date {
+		font-size: 90%;
+		font-weight: 300;
+		color: $gray;
+		margin-left: $xs;
+	}
+
+	&__body {
+		padding-top: $xs;
+	}
+}

@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Image from 'react-graceful-image';
+
 import Footer from '../Footer/Footer';
 import Heading from '../Common/Heading';
-
+import Comment from '../Comment/Comment';
+import AddComment from '../Comment/AddComment';
 import styles from './Story.module.css';
-import { fetchStories } from '../../actions/story';
+import { fetchStories, fetchComments } from '../../actions/story';
 
 class Story extends Component {
 	state = {
 		story: {},
 	};
 
-	componentDidMount() {
-		this.props.fetchStories();
+	async componentDidMount() {
+		const { id } = this.props.match.params;
+		await this.props.fetchStories();
+		// fetch comments
+		this.props.fetchComments(id);
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
@@ -27,6 +33,7 @@ class Story extends Component {
 
 	componentWillUnmount = () => {
 		// Clear comments for story
+		this.props.clearComments();
 	};
 
 	render() {
@@ -43,7 +50,12 @@ class Story extends Component {
 						in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
 						cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</p>
-					<img src="https://source.unsplash.com/random/800x600" alt="Random image" />
+					<Image
+						src="https://source.unsplash.com/random/800x600"
+						width="800"
+						height="600"
+						alt="My awesome image"
+					/>
 					<p className={styles.Story__body}>
 						{story.body} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 						incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -52,6 +64,15 @@ class Story extends Component {
 						cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</p>
 				</article>
+				<hr />
+				<section className={styles.Story__comments}>
+					<AddComment />
+					{this.props.comments.length
+						? this.props.comments.map(comment => {
+								return <Comment comment={comment} key={comment.id} />;
+						  })
+						: 'No comments for this story'}
+				</section>
 				<Footer />
 			</section>
 		);
@@ -60,10 +81,13 @@ class Story extends Component {
 
 const mapStateToProps = state => ({
 	stories: state.stories.stories,
+	comments: state.stories.comments,
 });
 
 const mapDispatchToProps = dispatch => ({
 	fetchStories: () => dispatch(fetchStories()),
+	fetchComments: id => dispatch(fetchComments(id)),
+	clearComments: () => dispatch({ type: 'CLEAR_COMMENTS' }),
 });
 
 export default withRouter(
