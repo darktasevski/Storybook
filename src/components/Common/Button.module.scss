@@ -6,6 +6,11 @@
 	color: $primary-light;
 	font-size: 80%;
 
+	&__alt {
+		background: $accent-light;
+		margin-right: 1rem;
+	}
+
 	&:disabled {
 		background: $gray;
 		color: $text-dark;

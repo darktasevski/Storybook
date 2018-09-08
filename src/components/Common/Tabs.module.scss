@@ -1,0 +1,42 @@
+@import '../../styles/shared-styles/variables';
+
+.Tabs {
+	width: $container-default-width;
+	margin: auto;
+	background: white;
+	box-shadow: 0px 10px 40px hsla(0, 0%, 0%, 0.25);
+}
+
+.tabs {
+	display: flex;
+	border-bottom: solid 2px rgb(231, 236, 238);
+}
+
+.tab {
+	flex: 1;
+	padding: 10px;
+	background: white;
+	text-align: center;
+	color: hsl(240, 5%, 60%);
+	font-size: 120%;
+	cursor: pointer;
+
+	&:hover {
+		color: hsl(240, 5%, 70%);
+	}
+
+	&:active {
+		color: hsl(199, 94%, 67%);
+		transform: scale(0.95);
+	}
+}
+
+.panels {
+	background: rgb(244, 249, 252);
+	min-height: 35rem;
+	padding: $md;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	position: relative;
+}

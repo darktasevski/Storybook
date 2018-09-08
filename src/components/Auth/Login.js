@@ -37,8 +37,8 @@ const LoginForm = ({ errors, touched }) => {
 							errors.password && <p className={styles.Login__form__error}>{errors.password}</p>}
 					</div>
 				</div>
+				<button type="submit">Login</button>
 			</div>
-			<button type="submit">Login</button>
 		</Form>
 	);
 };

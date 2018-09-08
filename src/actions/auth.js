@@ -31,6 +31,8 @@ export const getUserToken = (email, password, history) => async dispatch => {
 	}
 };
 
+export const registerUser = () => {};
+
 export const setCurrentUser = user => ({
 	type: types.SET_CURRENT_USER,
 	payload: user,
