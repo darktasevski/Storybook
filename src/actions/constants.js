@@ -14,6 +14,8 @@ export const types = new KeyMirror({
 
 	SET_CURRENT_USER: null,
 	CLEAR_USER: null,
+
+	REGISTER_USER_SUCCESS: null,
 });
 
 export const baseURL = 'http://www.scripttic.com:8000';

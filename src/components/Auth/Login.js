@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
 import styles from './Form.module.css';
-import Button from '../Common/Button';
+import SubmitButton from '../Buttons/SubmitButton';
 import { getUserToken } from '../../actions/auth';
 
 const LoginForm = ({ errors, touched }) => {
@@ -29,7 +29,7 @@ const LoginForm = ({ errors, touched }) => {
 					{touched.password && errors.password && <p className={styles.Form__error}>{errors.password}</p>}
 				</div>
 			</div>
-			<button type="submit">Login</button>
+			<SubmitButton text="Login" />
 		</Form>
 	);
 };

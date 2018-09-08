@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { types, baseURL } from './types';
+import { types, baseURL } from './constants';
 
 export const getUserToken = (email, password, history) => async dispatch => {
 	// By default, axios serializes JavaScript objects to JSON.
@@ -31,7 +31,15 @@ export const getUserToken = (email, password, history) => async dispatch => {
 	}
 };
 
-export const registerUser = () => {};
+export const registerUser = (userData, changeTab) => async dispatch => {
+	try {
+		await axios.post(`${baseURL}/api/v1/user`, userData);
+		changeTab(1);
+		dispatch({ type: types.REGISTER_USER_SUCCESS });
+	} catch (err) {
+		return dispatch({ type: types.VALIDATE_USER_FAILURE, payload: 'Authentication error' });
+	}
+};
 
 export const setCurrentUser = user => ({
 	type: types.SET_CURRENT_USER,

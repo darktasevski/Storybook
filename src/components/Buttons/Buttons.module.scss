@@ -16,3 +16,10 @@
 		color: $text-dark;
 	}
 }
+
+.SubmitButton {
+	background: $accent-light;
+	padding: $xxs $md;
+	color: $primary-light;
+	font-size: 80%;
+}

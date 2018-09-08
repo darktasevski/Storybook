@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import styles from './AppRouter.module.css';
 
@@ -13,26 +15,44 @@ import Profile from '../components/User/Profile';
 import EditProfile from '../components/User/EditProfile';
 import Auth from '../components/Auth/Auth';
 
-const AppRouter = props => {
-	return (
-		<BrowserRouter>
-			<Fragment>
-				<Nav isAuthenticated={props.isAuthenticated} logout={props.logout} />
-				<div className={styles.App}>
-					<Switch>
-						<PublicRoute exact path="/" component={Home} />
-						<PublicRoute exact path="/story/:id" component={Story} />
-						<PrivateRoute path="/story/edit/:id" component={EditStory} />
-						<PublicRoute exact path="/user/:id" component={Profile} />
-						<PrivateRoute path="/user/edit/:id" component={EditProfile} />
-						<PublicRoute path="/auth/login" component={Auth} />
-						<PublicRoute path="/auth/register" component={Auth} />
-						<Redirect to="/" /> {/*// Custom 404?*/}
-					</Switch>
-				</div>
-			</Fragment>
-		</BrowserRouter>
-	);
-};
+import { logoutUser } from '../actions/auth';
 
-export default AppRouter;
+const AppRouter = props => (
+	<BrowserRouter>
+		<Fragment>
+			<Nav isAuthenticated={props.isAuthenticated} logoutUser={props.logoutUser} logout={props.logout} />
+			<div className={styles.App}>
+				<Switch>
+					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/" component={Home} />
+					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/story/:id" component={Story} />
+					<PrivateRoute
+						isAuthenticated={props.isAuthenticated}
+						path="/story/edit/:id"
+						component={EditStory}
+					/>
+					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/user/:id" component={Profile} />
+					<PrivateRoute
+						isAuthenticated={props.isAuthenticated}
+						path="/user/edit/:id"
+						component={EditProfile}
+					/>
+					<PublicRoute isAuthenticated={props.isAuthenticated} path="/auth" component={Auth} />
+					<Redirect to="/" /> {/*// Custom 404?*/}
+				</Switch>
+			</div>
+		</Fragment>
+	</BrowserRouter>
+);
+
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = dispatch => ({
+	logoutUser: () => dispatch(logoutUser()),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AppRouter);

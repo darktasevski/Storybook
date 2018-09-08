@@ -23,6 +23,7 @@
 
 	&.active {
 		transform: scale(0.95);
+		color: hsl(199, 94%, 67%);
 	}
 
 	&:hover {

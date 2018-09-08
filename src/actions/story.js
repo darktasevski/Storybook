@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { types, baseURL } from './types';
+import { types, baseURL } from './constants';
 
 export const fetchStories = () => async dispatch => {
 	dispatch({ type: types.FETCH_STORIES });

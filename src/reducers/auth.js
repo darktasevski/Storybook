@@ -1,10 +1,11 @@
-import { types } from '../actions/types';
+import { types } from '../actions/constants';
 import { isEmpty } from '../helpers';
 
 const initialState = {
 	isAuthenticated: false,
 	err: null,
 	user: {},
+	msg: null,
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +23,10 @@ export default (state = initialState, action) => {
 				...state,
 				isAuthenticated: !isEmpty(action.payload),
 				user: action.payload,
+				msg: null,
 			};
+		case types.REGISTER_USER_SUCCESS:
+			return { ...state, msg: 'Registration successful. You can now log in.' };
 		case types.CLEAR_USER:
 			return { ...initialState };
 		default:
