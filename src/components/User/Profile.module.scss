@@ -1,0 +1,32 @@
+@import '../../styles/shared-styles/variables';
+
+.Profile {
+	background: #ffc;
+	display: flex;
+	flex-direction: column;
+	min-height: 60rem;
+	margin-top: 2rem;
+	position: relative;
+	justify-content: flex-start;
+	align-items: center;
+	padding: $xl;
+
+	& img {
+		display: block;
+		height: 25rem;
+		height: 25rem;
+		border-radius: 100%;
+	}
+
+	&__email {
+		font-style: italic;
+	}
+
+	&__heading {
+		color: $text-dark;
+	}
+
+	&__bio {
+		width: 70%;
+	}
+}
