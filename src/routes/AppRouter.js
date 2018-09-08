@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 import styles from './AppRouter.module.css';
 
 import PublicRoute from '../components/Auth/PublicRoute';
@@ -20,17 +20,22 @@ import { logoutUser } from '../actions/auth';
 const AppRouter = props => (
 	<BrowserRouter>
 		<Fragment>
-			<Nav isAuthenticated={props.isAuthenticated} logoutUser={props.logoutUser} logout={props.logout} />
+			<Nav
+				isAuthenticated={props.isAuthenticated}
+				user={props.user}
+				logoutUser={props.logoutUser}
+				logout={props.logout}
+			/>
 			<div className={styles.App}>
 				<Switch>
-					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/" component={Home} />
-					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/story/:id" component={Story} />
+					<Route exact path="/" component={Home} />
+					<Route isAuthenticated={props.isAuthenticated} exact path="/story/:id" component={Story} />
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/story/edit/:id"
 						component={EditStory}
 					/>
-					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/user/:id" component={Profile} />
+					<Route isAuthenticated={props.isAuthenticated} exact path="/user/:id" component={Profile} />
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/user/edit/:id"
@@ -46,6 +51,7 @@ const AppRouter = props => (
 
 const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
+	user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => ({

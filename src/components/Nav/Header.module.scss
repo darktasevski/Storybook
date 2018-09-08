@@ -20,4 +20,13 @@
 			margin: 0 $xs;
 		}
 	}
+
+	&__links__right {
+		display: flex;
+		align-items: center;
+
+		& img {
+			cursor: pointer;
+		}
+	}
 }

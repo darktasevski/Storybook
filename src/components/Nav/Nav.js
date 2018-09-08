@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import Logo from '../Common/Logo';
 import Button from '../Buttons/Button';
+import ProfileButton from '../Buttons/ProfileButton';
 
-const Nav = ({ isAuthenticated, logoutUser }) => {
+const Nav = ({ isAuthenticated, logoutUser, user }) => {
 	return (
 		<nav className={styles.Nav}>
 			<Logo />
@@ -15,11 +16,11 @@ const Nav = ({ isAuthenticated, logoutUser }) => {
 				<NavLink to="/">Travel</NavLink>
 				<NavLink to="/">Culture</NavLink>
 			</div>
-			<div>
+			<div className={styles.Nav__links__right}>
 				{isAuthenticated ? (
 					<Fragment>
 						<Button to="/" text="Tell your story" small />
-						<Button to="/" text="Logout" small onClick={logoutUser} />
+						<ProfileButton userId={user.id} to="/" text="Logout" onClick={logoutUser} />
 					</Fragment>
 				) : (
 					<Button to="/auth" text="Become a Storyteller" />
