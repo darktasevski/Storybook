@@ -25,6 +25,10 @@ class Story extends Component {
 		}
 	};
 
+	componentWillUnmount = () => {
+		// Clear comments for story
+	};
+
 	render() {
 		const { story } = this.state;
 
