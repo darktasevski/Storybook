@@ -4,59 +4,49 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import styles from './Register.module.css';
+import styles from './Form.module.css';
 
 import { registerUser } from '../../actions/auth';
 
 const RegisterForm = ({ errors, touched }) => {
 	return (
-		<Form className={styles.Register}>
-			<div className="row">
-				<div className="col sm-8">
-					<div className="form-group">
-						<label htmlFor="email">Email</label>
-						<Field className="input-block" name="email" id="email" placeholder="Email" />
-						<div>{touched.email && errors.email && <p>{errors.email}</p>}</div>
-					</div>
+		<Form className={styles.Form}>
+			<div className={styles.Form__group}>
+				<Field className="input-block" name="email" id="email" placeholder="Email" />
+				<div>{touched.email && errors.email && <p className={styles.Form__error}>{errors.email}</p>}</div>
+			</div>
+
+			<div className={styles.Form__group}>
+				<Field className="input-block" type="password" name="password" id="password" placeholder="Password" />
+				<div>
+					{touched.password && errors.password && <p className={styles.Form__error}>{errors.password}</p>}
 				</div>
 
-				<div className="col sm-8">
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<Field
-							className="input-block"
-							type="password"
-							name="password"
-							id="password"
-							placeholder="Password"
-						/>
-						<div>{touched.password && errors.password && <p>{errors.password}</p>}</div>
-
-						<label htmlFor="password2">Confirm Password</label>
-						<Field
-							className="input-block"
-							type="password"
-							id="password2"
-							name="password2"
-							placeholder="Confirm password"
-						/>
-						<div>{touched.password2 && errors.password2 && <p>{errors.password2}</p>}</div>
-					</div>
-				</div>
-
-				<div className="col sm-8">
-					<div className="form-group">
-						<label htmlFor="firstName">Your Name</label>
-						<Field className="input-block" name="firstName" placeholder="Full name" id="firstName" />
-						<div>{touched.firstName && errors.firstName && <p>{errors.firstName}</p>}</div>
-
-						<label htmlFor="lastName">Your lastName</label>
-						<Field className="input-block" name="lastName" placeholder="lastName" id="lastName" />
-						<div>{touched.lastName && errors.lastName && <p>{errors.lastName}</p>}</div>
-					</div>
+				<Field
+					className="input-block"
+					type="password"
+					id="password2"
+					name="password2"
+					placeholder="Confirm password"
+				/>
+				<div>
+					{touched.password2 && errors.password2 && <p className={styles.Form__error}>{errors.password2}</p>}
 				</div>
 			</div>
-			<button>Register</button>
+
+			<div className={styles.Form__group}>
+				<Field className="input-block" name="firstName" placeholder="Full name" id="firstName" />
+				<div>
+					{touched.firstName && errors.firstName && <p className={styles.Form__error}>{errors.firstName}</p>}
+				</div>
+
+				<Field className="input-block" name="lastName" placeholder="lastName" id="lastName" />
+				<div>
+					{touched.lastName && errors.lastName && <p className={styles.Form__error}>{errors.lastName}</p>}
+				</div>
+			</div>
+
+			<button type="submit">Register</button>
 		</Form>
 	);
 };

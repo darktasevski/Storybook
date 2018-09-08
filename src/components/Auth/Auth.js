@@ -1,11 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import Login from './Login';
 import Register from './Register';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '../Common/Tabs';
-import styles from './Auth.module.css';
 
-const COLORS = ['red', 'blue', 'green', 'yellow'];
+const styles = {
+	color: 'hsl(240, 5%, 20%)',
+	paddingTop: '8rem',
+};
 
 export default class Auth extends Component {
 	state = {
@@ -13,11 +15,8 @@ export default class Auth extends Component {
 	};
 
 	render() {
-		const { currentTab } = this.state;
-		const color = COLORS[currentTab];
-
 		return (
-			<div className={styles.Auth}>
+			<div style={styles}>
 				<Tabs
 					activeIndex={this.state.currentTab}
 					onChange={index => {

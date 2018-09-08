@@ -1,0 +1,35 @@
+@import '../../styles/shared-styles/variables';
+
+.Form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-family: inherit;
+
+	& > * {
+		font-family: inherit;
+	}
+
+	&__group {
+		min-width: 40rem;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+	}
+
+	&__error {
+		font-size: 1rem;
+		color: $accent-red;
+		text-align: center;
+	}
+
+	& input {
+		font-family: inherit;
+		padding: $xs $sm;
+		border: none;
+		margin-bottom: 0.5rem;
+		color: $primary-dark;
+	}
+}

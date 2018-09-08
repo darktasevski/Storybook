@@ -5,40 +5,31 @@ import { withFormik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import styles from './Login.module.css';
+import styles from './Form.module.css';
 import Button from '../Common/Button';
 import { getUserToken } from '../../actions/auth';
 
 const LoginForm = ({ errors, touched }) => {
 	return (
-		<Form className={styles.Login}>
-			<div className={styles.Login__form}>
-				<div className={styles.Login__form__group}>
-					<label className={styles.Login__form__label} htmlFor="email">
-						Email
-					</label>
-					<Field className={styles.Login__form__input} name="email" id="email" placeholder="Email" />
-					<div>
-						{touched.email && errors.email && <p className={styles.Login__form__error}>{errors.email}</p>}
-					</div>
-
-					<label className={styles.Login__form__label} htmlFor="pass">
-						Password
-					</label>
-					<Field
-						className={styles.Login__form__input}
-						type="password"
-						name="password"
-						id="pass"
-						placeholder="Password"
-					/>
-					<div>
-						{touched.password &&
-							errors.password && <p className={styles.Login__form__error}>{errors.password}</p>}
-					</div>
-				</div>
-				<button type="submit">Login</button>
+		<Form className={styles.Form}>
+			<div className={styles.Form__group}>
+				<Field className={styles.Login__form__input} name="email" id="email" placeholder="Email" />
+				<div>{touched.email && errors.email && <p className={styles.Form__error}>{errors.email}</p>}</div>
 			</div>
+
+			<div className={styles.Form__group}>
+				<Field
+					className={styles.Login__form__input}
+					type="password"
+					name="password"
+					id="pass"
+					placeholder="Password"
+				/>
+				<div>
+					{touched.password && errors.password && <p className={styles.Form__error}>{errors.password}</p>}
+				</div>
+			</div>
+			<button type="submit">Login</button>
 		</Form>
 	);
 };
