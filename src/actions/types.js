@@ -8,6 +8,12 @@ export const types = new KeyMirror({
 	FETCH_STORY: null,
 	FETCH_STORY_SUCCESS: null,
 	FETCH_STORY_FAILURE: null,
+
+	VALIDATE_USER_SUCCESS: null,
+	VALIDATE_USER_FAILURE: null,
+
+	SET_CURRENT_USER: null,
+	CLEAR_USER: null,
 });
 
 export const baseURL = 'http://www.scripttic.com:8000';

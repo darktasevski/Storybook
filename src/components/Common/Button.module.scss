@@ -4,4 +4,10 @@
 	background: $accent-red;
 	padding: $xxs $md;
 	color: $primary-light;
+	font-size: 80%;
+
+	&:disabled {
+		background: $gray;
+		color: $text-dark;
+	}
 }

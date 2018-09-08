@@ -16,7 +16,7 @@ export default class Nav extends Component {
 					<NavLink to="/">Travel</NavLink>
 					<NavLink to="/">Culture</NavLink>
 				</div>
-				<Button />
+				<Button text="Become a Storyteller" />
 			</nav>
 		);
 	}

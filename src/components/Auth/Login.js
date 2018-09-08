@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
 import styles from './Login.module.css';
 import Button from '../Common/Button';
+import { getUserToken } from '../../actions/auth';
 
-const LoginForm = ({ errors, touched, closeCallback }) => {
+const LoginForm = ({ errors, touched }) => {
 	return (
 		<Form className={styles.Login}>
 			<div className={styles.Login__form}>
@@ -16,7 +18,9 @@ const LoginForm = ({ errors, touched, closeCallback }) => {
 						Email
 					</label>
 					<Field className={styles.Login__form__input} name="email" id="email" placeholder="Email" />
-					<div>{touched.email && errors.email && <p>{errors.email}</p>}</div>
+					<div>
+						{touched.email && errors.email && <p className={styles.Login__form__error}>{errors.email}</p>}
+					</div>
 
 					<label className={styles.Login__form__label} htmlFor="pass">
 						Password
@@ -28,10 +32,13 @@ const LoginForm = ({ errors, touched, closeCallback }) => {
 						id="pass"
 						placeholder="Password"
 					/>
-					<div>{touched.password && errors.password && <p>{errors.password}</p>}</div>
+					<div>
+						{touched.password &&
+							errors.password && <p className={styles.Login__form__error}>{errors.password}</p>}
+					</div>
 				</div>
-				<Button />
 			</div>
+			<button type="submit">Login</button>
 		</Form>
 	);
 };
@@ -45,7 +52,6 @@ LoginForm.propTypes = {
 		email: PropTypes.bool,
 		password: PropTypes.bool,
 	}),
-	closeCallback: PropTypes.func,
 };
 
 const FormikLogin = withFormik({
@@ -62,17 +68,20 @@ const FormikLogin = withFormik({
 		password: Yup.string().required('Password is required'),
 	}),
 	handleSubmit(values, { props, resetForm, setSubmitting }) {
-		// props.loginUser(values);
+		console.log(props);
+		props.getUserToken(values.email, values.password, props.history);
 		resetForm();
 		setSubmitting(false);
 	},
 })(LoginForm);
 
 const mapDispatchToProps = dispatch => ({
-	// loginUser: userData => dispatch(loginUser(userData)),
+	getUserToken: (email, password, history) => dispatch(getUserToken(email, password, history)),
 });
 
-export default connect(
-	null,
-	mapDispatchToProps
-)(FormikLogin);
+export default withRouter(
+	connect(
+		null,
+		mapDispatchToProps
+	)(FormikLogin)
+);
