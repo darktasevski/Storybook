@@ -20,10 +20,10 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 				{isAuthenticated ? (
 					<Fragment>
 						<Button to="/" text="Tell your story" small />
-						<ProfileButton userId={user.id} to="/" text="Logout" onClick={logoutUser} logout={logoutUser} />
+						<ProfileButton userId={user.id} logout={logoutUser} />
 					</Fragment>
 				) : (
-					<Button to="/auth" text="Become a Storyteller" />
+					<Button red to="/auth" text="Become a Storyteller" />
 				)}
 			</div>
 		</nav>

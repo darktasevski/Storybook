@@ -61,3 +61,19 @@ export const logoutUser = () => dispatch => {
 export const clearUser = () => ({
 	type: types.CLEAR_USER,
 });
+
+export const updateUser = userData => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.put(`${baseURL}/api/v1/user`, userData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		await localStorage.setItem('user', JSON.stringify(data));
+		dispatch({ type: types.UPDATE_USER_SUCCESS, payload: data });
+	} catch (err) {
+		dispatch({ type: types.UPDATE_USER_FAILURE, payload: err });
+	}
+};

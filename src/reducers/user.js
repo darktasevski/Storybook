@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
 			return { isLoading: false, profile: action.payload, err: null };
 		case types.FETCH_USER_FAILURE:
 			return { isLoading: false, err: action.payload, profile: {} };
+		case types.CLEAR_PROFILE:
+			return { ...state, profile: {} };
 		default:
 			return state;
 	}

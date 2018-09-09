@@ -32,4 +32,9 @@
 		margin-bottom: 0.5rem;
 		color: $primary-dark;
 	}
+
+	&__action {
+		display: flex;
+		justify-content: space-between;
+	}
 }

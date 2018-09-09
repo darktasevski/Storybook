@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Image from 'react-graceful-image';
 import moment from 'moment';
 
@@ -38,7 +38,9 @@ class Story extends Component {
 	};
 
 	render() {
-		const { currentUser } = this.props;
+		const {
+			auth: { currentUser, isAuthenticated },
+		} = this.props;
 		const { story } = this.state;
 
 		return (
@@ -65,7 +67,7 @@ class Story extends Component {
 						alt="My awesome image"
 					/>
 					<p className={styles.Story__body}>
-						{story.body} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+						<strong>Buffer text</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 						incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
 						ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
 						in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -74,7 +76,13 @@ class Story extends Component {
 				</article>
 				<hr />
 				<section className={styles.Story__comments}>
-					<AddComment id={story.id} currentUser={currentUser} />
+					{isAuthenticated ? (
+						<AddComment id={story.id} currentUser={currentUser} />
+					) : (
+						<p style={{ textAlign: 'center', padding: '2rem' }}>
+							<Link to="/auth">Sign in</Link> to post comments.
+						</p>
+					)}
 					{this.props.comments.length ? (
 						this.props.comments.map(comment => {
 							return <Comment comment={comment} key={comment.id} />;
@@ -83,6 +91,7 @@ class Story extends Component {
 						<p style={{ textAlign: 'center', padding: '2rem' }}>No comments for this story</p>
 					)}
 				</section>
+
 				<Footer />
 			</section>
 		);
@@ -92,7 +101,7 @@ class Story extends Component {
 const mapStateToProps = state => ({
 	stories: state.stories.stories,
 	comments: state.stories.comments,
-	currentUser: state.auth.user,
+	auth: state.auth,
 });
 
 const mapDispatchToProps = dispatch => ({

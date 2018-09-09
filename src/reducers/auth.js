@@ -25,6 +25,18 @@ export default (state = initialState, action) => {
 				user: action.payload,
 				msg: null,
 			};
+		case types.UPDATE_USER_SUCCESS:
+			return {
+				...state,
+				isAuthenticated: !isEmpty(action.payload),
+				user: action.payload,
+			};
+		case types.UPDATE_USER_FAILURE:
+			return {
+				...state,
+				isAuthenticated: !isEmpty(action.payload),
+				err: action.payload,
+			};
 		case types.REGISTER_USER_SUCCESS:
 			return { ...state, msg: 'Registration successful. You can now log in.' };
 		case types.CLEAR_USER:

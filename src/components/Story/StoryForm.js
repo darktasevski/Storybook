@@ -2,32 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import { createComment } from '../../actions/story';
-import styles from './Comment.module.css';
+import { createStory } from '../../actions/story';
+import styles from './StoryForm.module.css';
 import SubmitButton from '../Buttons/SubmitButton';
 
 const schema = Yup.object().shape({
-	comment: Yup.string()
-		.min(10, 'Comment must have at least 10 characters')
-		.max(255, 'Comment is limited to 255 characters')
-		.required('Comment body is required'),
+	title: Yup.string()
+		.min(2, 'Title must have at least 2 characters')
+		.max(50, 'Title is limited to 50 characters')
+		.required('Title is required'),
+	body: Yup.string()
+		.min(10, 'Story must have at least 10 characters')
+		.max(255, 'Story is limited to 255 characters')
+		.required('Story body is required'),
 });
 
-class AddComment extends Component {
+class NewStory extends Component {
 	state = {
-		comment: '',
-		error: '',
+		title: '',
+		body: '',
 	};
 
 	onChange = e => {
-		this.setState({ comment: e.target.value });
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
 	};
 
 	onSubmit = e => {
 		e.preventDefault();
 		schema
 			.isValid({
-				comment: this.state.comment,
+				title: this.state.title,
+				body: this.state.body,
 			})
 			.then(valid => {
 				if (valid) {
@@ -52,18 +58,26 @@ class AddComment extends Component {
 		const { comment, error } = this.state;
 
 		return (
-			<section className={styles.AddComment}>
-				<p style={{ textAlign: 'center' }} className={styles.AddComment__error}>
-					{error || null}
-				</p>
-				<textarea
-					value={this.state.comment}
-					name="comment"
-					id="comment"
-					rows="5"
-					onChange={this.onChange}
-					placeholder="Write a response..."
-				/>
+			<section className={styles.StoryForm}>
+				<div className="from__group">
+					<input onChange={this.onChange} type="text" name="title" id="title" />
+					<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+						{error || null}
+					</small>
+				</div>
+				<div className="form__group">
+					<textarea
+						value={this.state.comment}
+						name="body"
+						id="body"
+						rows="9"
+						onChange={this.onChange}
+						placeholder="Write a response..."
+					/>
+					<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+						{error || null}
+					</small>
+				</div>
 				<SubmitButton text="Submit" disable={!(comment.length >= 10)} onClick={this.onSubmit} />
 			</section>
 		);
@@ -76,4 +90,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(AddComment);
+)(NewStory);

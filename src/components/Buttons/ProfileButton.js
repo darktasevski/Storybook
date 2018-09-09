@@ -31,7 +31,7 @@ class ProfileButton extends Component {
 				</button>
 				{this.state.showMenu ? (
 					<div className={styles.ProfileButton__menu}>
-						<Button to={`/user/${this.props.userId}`} text="Profile" large />
+						<Button to="/auth/me" text="Profile" large />
 						<Button to="/" text="Logout" large onClick={this.props.logout} />
 					</div>
 				) : null}

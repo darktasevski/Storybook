@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Link from '../Common/LinkWithScroll';
+import Image from 'react-graceful-image';
 
+import Link from '../Common/LinkWithScroll';
 import styles from './StoryBlock.module.css';
 
 export default class StoryBlock extends Component {
@@ -21,10 +22,15 @@ export default class StoryBlock extends Component {
 						}}
 						className={styles.StoryBlock__link}
 					>
-						Read more...
+						Read story...
 					</Link>
 				</div>
-				<img src="https://source.unsplash.com/wKjIeK4QSnk/800x800" alt="Unsplash pic" />
+				<Image
+					src="https://source.unsplash.com/iWMU4CdPoWs"
+					width="100%"
+					height="100%"
+					alt="Story's Unsplash pic"
+				/>
 			</div>
 		);
 	}

@@ -37,3 +37,5 @@ export const createComment = (id, commentData) => async dispatch => {
 		return dispatch({ type: types.CREATE_COMMENT_FAILURE, payload: err });
 	}
 };
+
+export const createStory = (id, storyData) => async dispatch => {};

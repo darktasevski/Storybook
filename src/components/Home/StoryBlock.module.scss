@@ -19,18 +19,17 @@
 	}
 
 	&__info {
-		width: calc(100% - 4rem);
-		position: absolute;
+		width: 100%;
 		color: $primary-light;
+		position: absolute;
+		bottom: 0;
 		font-weight: 400;
 		font-family: $heading-font-family;
-		letter-spacing: 0.3rem;
-		bottom: 2rem;
-		left: 4rem;
-		text-align: start;
+		letter-spacing: 0.2rem;
+		padding: $sm;
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
-		align-items: flex-end;
 
 		& p {
 			font-family: $primary-font-family;
@@ -41,7 +40,7 @@
 	}
 
 	& img {
-		overflow: hidden;
+		// overflow: hidden;
 		object-fit: cover;
 		display: block;
 		width: 100%;

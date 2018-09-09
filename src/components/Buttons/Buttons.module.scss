@@ -1,7 +1,6 @@
 @import '../../styles/shared-styles/variables';
 
 .Button {
-	background: $accent-red;
 	padding: $xxs $md;
 	color: $primary-light;
 	font-size: 80%;
@@ -9,6 +8,10 @@
 	&__sm {
 		background: $accent-light;
 		margin-right: 1rem;
+	}
+
+	&__red {
+		background: $accent-red;
 	}
 
 	&__lg {

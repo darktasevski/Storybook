@@ -10,9 +10,9 @@ import PrivateRoute from '../components/Auth/PrivateRoute';
 import Nav from '../components/Nav/Nav';
 import Home from '../components/Home/Home';
 import Story from '../components/Story/Story';
-import EditStory from '../components/Story/EditStory';
+import StoryForm from '../components/Story/StoryForm';
 import Profile from '../components/Profile/Profile';
-import EditProfile from '../components/User/EditProfile';
+import EditProfile from '../components/Profile/EditProfile';
 import Auth from '../components/Auth/Auth';
 
 import { logoutUser } from '../actions/auth';
@@ -33,7 +33,7 @@ const AppRouter = props => (
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/story/edit/:id"
-						component={EditStory}
+						component={StoryForm}
 					/>
 					<Route isAuthenticated={props.isAuthenticated} exact path="/user/:id" component={Profile} />
 					<PrivateRoute
@@ -41,7 +41,8 @@ const AppRouter = props => (
 						path="/user/edit/:id"
 						component={EditProfile}
 					/>
-					<PublicRoute isAuthenticated={props.isAuthenticated} path="/auth" component={Auth} />
+					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/auth" component={Auth} />
+					<PrivateRoute isAuthenticated={props.isAuthenticated} path="/auth/me" component={Profile} />
 					<Redirect to="/" /> {/*// Custom 404?*/}
 				</Switch>
 			</div>
