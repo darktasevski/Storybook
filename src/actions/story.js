@@ -38,4 +38,19 @@ export const createComment = (id, commentData) => async dispatch => {
 	}
 };
 
-export const createStory = (id, storyData) => async dispatch => {};
+export const createStory = (storyData, history) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.post(`${baseURL}/api/v1/article`, storyData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		console.log('DATA', data);
+		dispatch({ type: types.CREATE_STORY_SUCCESS, payload: data });
+		history.push(`/story/${data.id}`);
+	} catch (err) {
+		return dispatch({ type: types.CREATE_STORY_FAILURE, payload: err });
+	}
+};

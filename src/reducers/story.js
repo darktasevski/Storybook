@@ -27,6 +27,30 @@ export default (state = initialState, action) => {
 				isLoading: false,
 				error: action.payload,
 			};
+		case types.CREATE_STORY_SUCCESS:
+			return {
+				...state,
+				stories: [action.payload, ...state.stories],
+				isLoading: false,
+			};
+		case types.CREATE_STORY_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.payload,
+			};
+		case types.CREATE_COMMENT_SUCCESS:
+			return {
+				...state,
+				comments: [action.payload, ...state.comments],
+				isLoading: false,
+			};
+		case types.CREATE_COMMENT_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.payload,
+			};
 		case types.FETCH_COMMENTS:
 			return {
 				...state,

@@ -19,7 +19,7 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 			<div className={styles.Nav__links__right}>
 				{isAuthenticated ? (
 					<Fragment>
-						<Button to="/" text="Tell your story" small />
+						<Button to="/story/new" text="Tell your story" small />
 						<ProfileButton userId={user.id} logout={logoutUser} />
 					</Fragment>
 				) : (

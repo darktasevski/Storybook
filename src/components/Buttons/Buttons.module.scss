@@ -40,6 +40,11 @@
 
 	&:disabled {
 		background: $gray;
+		cursor: not-allowed;
+	}
+
+	&__big {
+		padding: $sm $lg;
 	}
 }
 

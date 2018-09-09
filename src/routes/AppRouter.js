@@ -29,7 +29,13 @@ const AppRouter = props => (
 			<div className={styles.App}>
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route isAuthenticated={props.isAuthenticated} exact path="/story/:id" component={Story} />
+					<PrivateRoute
+						isAuthenticated={props.isAuthenticated}
+						exact
+						path="/story/new"
+						component={StoryForm}
+					/>
+					<Route isAuthenticated={props.isAuthenticated} path="/story/:id" component={Story} />
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/story/edit/:id"

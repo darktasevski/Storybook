@@ -1,2 +1,55 @@
+@import '../../styles/shared-styles/variables';
+
 .StoryForm {
+	background: $comment-bg;
+	display: flex;
+	flex-direction: column;
+	min-height: 60rem;
+	margin-top: 2rem;
+	position: relative;
+	justify-content: flex-start;
+	align-items: center;
+	padding: $xl;
+
+	&__form {
+		width: $container-default-width;
+		padding: $md;
+	}
+
+	&__group {
+		width: 100%;
+		padding: $md;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		& ::placeholder {
+			color: $gray;
+			opacity: 1;
+		}
+
+		& input {
+			height: 3.5rem;
+			width: 100%;
+			padding: 0 $xs;
+			border: none;
+
+			&:focus,
+			&:active {
+				outline: 1px solid $gray;
+			}
+		}
+
+		& textarea {
+			width: 100%;
+			padding: $xs;
+			border: none;
+
+			&:focus,
+			&:active {
+				outline: 1px solid $gray;
+			}
+		}
+	}
 }

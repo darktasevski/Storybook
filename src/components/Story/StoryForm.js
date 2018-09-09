@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
 import { createStory } from '../../actions/story';
 import styles from './StoryForm.module.css';
+
 import SubmitButton from '../Buttons/SubmitButton';
 
 const schema = Yup.object().shape({
@@ -21,11 +23,17 @@ class NewStory extends Component {
 	state = {
 		title: '',
 		body: '',
+		isValid: false,
 	};
 
 	onChange = e => {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
+	};
+
+	canSubmit = () => {
+		const { title, body } = this.state;
+		return title.length >= 10 && title.length <= 50 && body.length >= 10 && body.length <= 255;
 	};
 
 	onSubmit = e => {
@@ -37,57 +45,66 @@ class NewStory extends Component {
 			})
 			.then(valid => {
 				if (valid) {
-					const { currentUser, createComment, id } = this.props;
+					const { user, createStory, history } = this.props;
 					const data = {
-						posterFirstName: currentUser.firstName,
-						posterLastName: currentUser.lastName,
-						posterId: currentUser.id,
-						body: this.state.comment,
-						title: 'Comment title', // Title is not optional...
+						posterFirstName: user.firstName,
+						posterLastName: user.lastName,
+						posterEmail: user.email,
+						posterId: user.id,
+						body: this.state.body,
+						title: this.state.title,
 					};
 					console.log('data', data);
-					createComment(id, data);
-					return this.setState({ comment: '', error: '' });
-				} else {
-					return this.setState({ error: 'Comment body must be between 10 and 255 characters!' });
+					createStory(data, history);
+					return this.setState({ title: '', body: '' });
 				}
 			});
 	};
 
 	render() {
-		const { comment, error } = this.state;
+		const { title, body } = this.state;
 
 		return (
 			<section className={styles.StoryForm}>
-				<div className="from__group">
-					<input onChange={this.onChange} type="text" name="title" id="title" />
-					<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
-						{error || null}
-					</small>
+				<div className={styles.StoryForm__form}>
+					<div className={styles.StoryForm__group}>
+						<input onChange={this.onChange} type="text" name="title" id="title" placeholder="Story Title" />
+						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+							{title.length > 50 ? 'Title must be between 10 and 50 characters' : null}
+						</small>
+					</div>
+					<div className={styles.StoryForm__group}>
+						<textarea
+							value={this.state.comment}
+							name="body"
+							id="body"
+							rows="15"
+							onChange={this.onChange}
+							placeholder="Tell a story..."
+						/>
+						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+							{body.length > 255 ? 'Body must be between 10 and 255 characters' : null}
+						</small>
+					</div>
+					<div className={styles.StoryForm__group}>
+						<SubmitButton text="Publish Story" big disable={!this.canSubmit()} onClick={this.onSubmit} />
+					</div>
 				</div>
-				<div className="form__group">
-					<textarea
-						value={this.state.comment}
-						name="body"
-						id="body"
-						rows="9"
-						onChange={this.onChange}
-						placeholder="Write a response..."
-					/>
-					<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
-						{error || null}
-					</small>
-				</div>
-				<SubmitButton text="Submit" disable={!(comment.length >= 10)} onClick={this.onSubmit} />
 			</section>
 		);
 	}
 }
 const mapDispatchToProps = dispatch => ({
-	createComment: (id, data) => dispatch(createComment(id, data)),
+	createStory: (data, history) => dispatch(createStory(data, history)),
 });
 
-export default connect(
-	null,
-	mapDispatchToProps
-)(NewStory);
+const mapStateToProps = (state, ownProps) => ({
+	user: state.auth.user,
+});
+
+export default withRouter(
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(NewStory)
+);

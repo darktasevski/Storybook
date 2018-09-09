@@ -39,7 +39,7 @@ class Story extends Component {
 
 	render() {
 		const {
-			auth: { currentUser, isAuthenticated },
+			auth: { user, isAuthenticated },
 		} = this.props;
 		const { story } = this.state;
 
@@ -77,7 +77,7 @@ class Story extends Component {
 				<hr />
 				<section className={styles.Story__comments}>
 					{isAuthenticated ? (
-						<AddComment id={story.id} currentUser={currentUser} />
+						<AddComment id={story.id} currentUser={user} />
 					) : (
 						<p style={{ textAlign: 'center', padding: '2rem' }}>
 							<Link to="/auth">Sign in</Link> to post comments.
