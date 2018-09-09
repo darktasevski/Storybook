@@ -24,6 +24,7 @@ if (localStorage.getItem('token')) {
 	// Check for expired token
 	const currentTime = Date.now();
 	if (Date.parse(exp) < currentTime) {
+		console.info('Session expired');
 		// Logout user if token has expired
 		store.dispatch(logoutUser());
 		// Clear current profile

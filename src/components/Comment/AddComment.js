@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import { createComment } from '../../actions/story';
+import { createComment, updateComment, removeComment } from '../../actions/story';
 import styles from './Comment.module.css';
 import SubmitButton from '../Buttons/SubmitButton';
+import Button from '../Buttons/Button';
 
 const schema = Yup.object().shape({
 	comment: Yup.string()
@@ -14,13 +15,21 @@ const schema = Yup.object().shape({
 });
 
 class AddComment extends Component {
-	state = {
-		comment: '',
-		error: '',
-	};
+	constructor(props) {
+		super(props);
 
-	onChange = e => {
-		this.setState({ comment: e.target.value });
+		this.state = {
+			comment: props.comment ? props.comment.body : '',
+			error: '',
+		};
+	}
+
+	onChange = e => this.setState({ comment: e.target.value });
+
+	onDelete = async () => {
+		const { removeComment, toggleEditMode, storyId, comment } = this.props;
+		await removeComment(storyId, comment.id);
+		return toggleEditMode();
 	};
 
 	onSubmit = e => {
@@ -31,16 +40,28 @@ class AddComment extends Component {
 			})
 			.then(valid => {
 				if (valid) {
-					const { currentUser, createComment, id } = this.props;
+					const {
+						currentUser,
+						updateComment,
+						toggleEditMode,
+						createComment,
+						storyId,
+						editMode,
+						comment,
+					} = this.props;
 					const data = {
 						posterFirstName: currentUser.firstName,
 						posterLastName: currentUser.lastName,
 						posterId: currentUser.id,
 						body: this.state.comment,
-						title: 'Comment title', // Title is not optional...
+						title: 'Comment', // Title is not optional...
 					};
-					console.log('data', data);
-					createComment(id, data);
+					if (editMode && comment) {
+						data.id = comment.id;
+						updateComment(storyId, data);
+						return this.setState({ comment: '', error: '' }, () => toggleEditMode());
+					}
+					createComment(storyId, data);
 					return this.setState({ comment: '', error: '' });
 				} else {
 					return this.setState({ error: 'Comment body must be between 10 and 255 characters!' });
@@ -64,13 +85,24 @@ class AddComment extends Component {
 					onChange={this.onChange}
 					placeholder="Write a response..."
 				/>
-				<SubmitButton text="Submit" disable={!(comment.length >= 10)} onClick={this.onSubmit} />
+				<div className={styles.AddComment__ctaGroup}>
+					{this.props.editMode && this.props.comment ? (
+						<SubmitButton red text="Delete" onClick={this.onDelete} />
+					) : null}
+					<SubmitButton
+						text="Submit"
+						disable={!(comment.length >= 10 && comment.length <= 255)}
+						onClick={this.onSubmit}
+					/>
+				</div>
 			</section>
 		);
 	}
 }
 const mapDispatchToProps = dispatch => ({
 	createComment: (id, data) => dispatch(createComment(id, data)),
+	updateComment: (id, data) => dispatch(updateComment(id, data)),
+	removeComment: (storyId, commentId) => dispatch(removeComment(storyId, commentId)),
 });
 
 export default connect(

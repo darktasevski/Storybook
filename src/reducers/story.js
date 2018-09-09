@@ -63,6 +63,28 @@ export default (state = initialState, action) => {
 				isLoading: false,
 				error: action.payload,
 			};
+		case types.UPDATE_COMMENT_SUCCESS: {
+			const filteredComments = state.comments.filter(c => c.id !== action.payload.id);
+			return {
+				...state,
+				comments: [action.payload, ...filteredComments],
+				isLoading: false,
+			};
+		}
+		case types.UPDATE_COMMENT_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.payload,
+			};
+		case types.REMOVE_COMMENT_SUCCESS: {
+			const filteredComments = state.comments.filter(c => c.id !== action.payload);
+			return {
+				...state,
+				comments: [...filteredComments],
+				isLoading: false,
+			};
+		}
 		case types.FETCH_COMMENTS:
 			return {
 				...state,

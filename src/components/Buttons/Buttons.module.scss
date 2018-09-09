@@ -43,6 +43,10 @@
 		cursor: not-allowed;
 	}
 
+	&__red {
+		background: $accent-red;
+	}
+
 	&__big {
 		padding: $sm $lg;
 	}

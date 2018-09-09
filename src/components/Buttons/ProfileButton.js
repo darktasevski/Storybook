@@ -9,13 +9,13 @@ class ProfileButton extends Component {
 		showMenu: false,
 	};
 
+	componentWillUnmount = () => {
+		document.removeEventListener('click', this.closeMenu);
+	};
+
 	closeMenu = () =>
 		this.setState({ showMenu: false }, () => {
-			try {
-				document.removeEventListener('click', this.closeMenu);
-			} catch (err) {
-				console.log(err);
-			}
+			document.removeEventListener('click', this.closeMenu);
 		});
 
 	toggleMenu = () =>

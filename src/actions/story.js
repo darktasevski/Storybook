@@ -38,6 +38,35 @@ export const createComment = (id, commentData) => async dispatch => {
 	}
 };
 
+export const removeComment = (aid, cid) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		await axios.delete(`${baseURL}/api/v1/article/${aid}/comment/${cid}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return dispatch({ type: types.REMOVE_COMMENT_SUCCESS, payload: cid });
+	} catch (err) {
+		return dispatch({ type: types.REMOVE_COMMENT_FAILURE, payload: err });
+	}
+};
+
+export const updateComment = (id, commentData) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.put(`${baseURL}/api/v1/article/${id}/comment`, commentData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		return dispatch({ type: types.UPDATE_COMMENT_SUCCESS, payload: data });
+	} catch (err) {
+		return dispatch({ type: types.UPDATE_COMMENT_FAILURE, payload: err });
+	}
+};
+
 export const createStory = (storyData, history) => async dispatch => {
 	try {
 		const token = await localStorage.getItem('token');

@@ -34,7 +34,6 @@ class Story extends Component {
 	};
 
 	componentWillUnmount = () => {
-		// Clear comments for story
 		this.props.clearComments();
 	};
 
@@ -86,7 +85,7 @@ class Story extends Component {
 				<hr />
 				<section className={styles.Story__comments}>
 					{isAuthenticated ? (
-						<AddComment id={story.id} currentUser={user} />
+						<AddComment storyId={story.id} currentUser={user} />
 					) : (
 						<p style={{ textAlign: 'center', padding: '2rem' }}>
 							<Link to="/auth">Sign in</Link> to post comments.
@@ -94,7 +93,7 @@ class Story extends Component {
 					)}
 					{this.props.comments.length ? (
 						this.props.comments.map(comment => {
-							return <Comment comment={comment} key={comment.id} />;
+							return <Comment comment={comment} storyId={story.id} currentUser={user} key={comment.id} />;
 						})
 					) : (
 						<p style={{ textAlign: 'center', padding: '2rem' }}>No comments for this story</p>
