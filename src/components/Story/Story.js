@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 import Button from '../Buttons/Button';
 import Heading from '../Common/Heading';
 import Comment from '../Comment/Comment';
-import AddComment from '../Comment/AddComment';
+import CommentForm from '../Comment/CommentForm';
 import styles from './Story.module.css';
 import { fetchStories, fetchComments } from '../../actions/story';
 
@@ -97,7 +97,7 @@ class Story extends Component {
 				<hr />
 				<section className={styles.Story__comments}>
 					{isAuthenticated ? (
-						<AddComment storyId={story.id} currentUser={user} />
+						<CommentForm storyId={story.id} currentUser={user} />
 					) : (
 						<p style={{ textAlign: 'center', padding: '2rem' }}>
 							<Link to="/auth">Sign in</Link> to post comments.

@@ -11,27 +11,19 @@ const StoryBlock = ({ story }) => {
 
 	return (
 		<div className={styles.StoryBlock}>
-			<div className={styles.StoryBlock__info}>
-				<div>
-					<h1>{title}</h1>
-					<p>By {posterFirstName}</p>
+			<Link to={`/story/${id}`}>
+				<div className={styles.StoryBlock__info}>
+					<div>
+						<h1>{title}</h1>
+						<p>By {posterFirstName}</p>
+					</div>
 				</div>
-				<Link
-					to={{
-						pathname: `/story/${id}`,
-						story: `${storyStr}`,
-					}}
-					className={styles.StoryBlock__link}
-				>
-					Read story...
-				</Link>
-			</div>
-			<Image
-				alt="Story's Unsplash pic"
-				height="100%"
-				src="https://source.unsplash.com/iWMU4CdPoWs"
-				width="100%"
-			/>
+				<Image
+					alt="Story's Unsplash pic"
+					style={{ height: '100%', width: '100%' }}
+					src="https://source.unsplash.com/iWMU4CdPoWs"
+				/>
+			</Link>
 		</div>
 	);
 };

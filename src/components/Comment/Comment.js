@@ -7,7 +7,7 @@ import moment from 'moment';
 import styles from './Comment.module.css';
 import avatarImg from '../../assets/avatar.jpg';
 import Button from '../Buttons/Button';
-import AddComment from './AddComment';
+import CommentForm from './CommentForm';
 
 export default class Comment extends Component {
 	static propTypes = {
@@ -61,7 +61,7 @@ export default class Comment extends Component {
 						</div>
 					</Fragment>
 				) : (
-					<AddComment
+					<CommentForm
 						comment={comment}
 						currentUser={currentUser}
 						editMode

@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
 		.required('Comment body is required'),
 });
 
-class AddComment extends Component {
+class CommentForm extends Component {
 	static propTypes = {
 		currentUser: PropTypes.shape({
 			id: PropTypes.number.isRequired,
@@ -125,4 +125,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(AddComment);
+)(CommentForm);
