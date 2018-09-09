@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import avatarImg from '../../assets/avatar.jpg';
-import styles from './Buttons.module.css';
 import Button from './Button';
+import styles from './Buttons.module.css';
 
 class ProfileButton extends Component {
+	static propTypes = {
+		logout: PropTypes.func.isRequired,
+	};
+
 	state = {
 		showMenu: false,
 	};

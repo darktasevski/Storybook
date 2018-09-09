@@ -64,10 +64,10 @@ const FormikRegister = withFormik({
 	mapPropsToValues({ email, password, passwordConfirm, firstName, lastName }) {
 		return {
 			email: email || '',
-			password: password || '',
-			password2: passwordConfirm || '',
 			firstName: firstName || '',
 			lastName: lastName || '',
+			password: password || '',
+			password2: passwordConfirm || '',
 		};
 	},
 	validationSchema: Yup.object().shape({

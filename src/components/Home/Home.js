@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
-import styles from './Home.module.css';
 import { fetchStories } from '../../actions/story';
 import Heading from '../Common/Heading';
 import StoryBlock from './StoryBlock';
+import styles from './Home.module.css';
 
 class Home extends Component {
+	static propTypes = {
+		stories: PropTypes.arrayOf(PropTypes.object),
+		fetchStories: PropTypes.func.isRequired,
+	};
+
 	componentDidMount = () => {
 		this.props.fetchStories();
 	};

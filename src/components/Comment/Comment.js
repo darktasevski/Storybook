@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import moment from 'moment';
@@ -9,6 +10,18 @@ import Button from '../Buttons/Button';
 import AddComment from './AddComment';
 
 export default class Comment extends Component {
+	static propTypes = {
+		comment: PropTypes.shape({
+			posterId: PropTypes.number.isRequired,
+			posterFirstName: PropTypes.string.isRequired,
+			posterLastName: PropTypes.string.isRequired,
+			datetime: PropTypes.string.isRequired,
+			body: PropTypes.string.isRequired,
+		}).isRequired,
+		storyId: PropTypes.number.isRequired,
+		currentUser: PropTypes.shape({}).isRequired,
+	};
+
 	state = {
 		editMode: false,
 	};
@@ -26,11 +39,11 @@ export default class Comment extends Component {
 			<article className={styles.Comment}>
 				{currentUser.id === comment.posterId ? (
 					<Button
-						to="#"
-						small
 						customStyles={btnStyles}
-						text={this.state.editMode ? 'Cancel' : 'Edit'}
 						onClick={this.toggleEditMode}
+						small
+						text={this.state.editMode ? 'Cancel' : 'Edit'}
+						to="#"
 					/>
 				) : null}
 
@@ -49,11 +62,11 @@ export default class Comment extends Component {
 					</Fragment>
 				) : (
 					<AddComment
-						editMode
-						toggleEditMode={this.toggleEditMode}
 						comment={comment}
-						storyId={storyId}
 						currentUser={currentUser}
+						editMode
+						storyId={storyId}
+						toggleEditMode={this.toggleEditMode}
 					/>
 				)}
 			</article>

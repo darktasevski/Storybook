@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import Login from './Login';
 import Register from './Register';
@@ -39,10 +38,5 @@ class Auth extends Component {
 		);
 	}
 }
-const mapStateToProps = state => ({
-	tabIndex: state.auth.tabIndex,
-});
 
-const mapDispatchToProps = dispatch => ({});
-
-export default withRouter(connect(mapStateToProps)(Auth));
+export default withRouter(Auth);

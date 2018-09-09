@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import Image from 'react-graceful-image';
@@ -13,6 +14,17 @@ import styles from './Story.module.css';
 import { fetchStories, fetchComments } from '../../actions/story';
 
 class Story extends Component {
+	static propTypes = {
+		fetchStories: PropTypes.func.isRequired,
+		fetchComments: PropTypes.func.isRequired,
+		stories: PropTypes.arrayOf(PropTypes.object),
+		comments: PropTypes.arrayOf(PropTypes.object),
+		auth: PropTypes.shape({
+			user: PropTypes.shape({ id: PropTypes.number.isRequired }),
+			isAuthenticated: PropTypes.bool,
+		}),
+	};
+
 	state = {
 		story: {},
 	};

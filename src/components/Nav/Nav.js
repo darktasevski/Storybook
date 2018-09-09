@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import styles from './Nav.module.css';
-import Logo from '../Common/Logo';
 import Button from '../Buttons/Button';
+import Logo from '../Common/Logo';
 import ProfileButton from '../Buttons/ProfileButton';
+import styles from './Nav.module.css';
 
 const Nav = ({ isAuthenticated, logoutUser, user }) => {
 	return (
@@ -27,6 +28,14 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 			</div>
 		</nav>
 	);
+};
+
+Nav.propTypes = {
+	isAuthenticated: PropTypes.bool,
+	logoutUser: PropTypes.func.isRequired,
+	user: PropTypes.shape({
+		id: PropTypes.number,
+	}),
 };
 
 export default Nav;

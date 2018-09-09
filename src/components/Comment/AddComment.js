@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
 import { createComment, updateComment, removeComment } from '../../actions/story';
 import styles from './Comment.module.css';
 import SubmitButton from '../Buttons/SubmitButton';
-import Button from '../Buttons/Button';
 
 const schema = Yup.object().shape({
 	comment: Yup.string()
@@ -15,6 +15,21 @@ const schema = Yup.object().shape({
 });
 
 class AddComment extends Component {
+	static propTypes = {
+		currentUser: PropTypes.shape({
+			id: PropTypes.number.isRequired,
+		}),
+		comment: PropTypes.shape({
+			id: PropTypes.number.isRequired,
+		}),
+		createComment: PropTypes.func,
+		editMode: PropTypes.bool,
+		removeComment: PropTypes.func,
+		storyId: PropTypes.number,
+		toggleEditMode: PropTypes.func,
+		updateComment: PropTypes.func,
+	};
+
 	constructor(props) {
 		super(props);
 
@@ -41,19 +56,19 @@ class AddComment extends Component {
 			.then(valid => {
 				if (valid) {
 					const {
-						currentUser,
-						updateComment,
-						toggleEditMode,
-						createComment,
-						storyId,
-						editMode,
 						comment,
+						createComment,
+						currentUser,
+						editMode,
+						storyId,
+						toggleEditMode,
+						updateComment,
 					} = this.props;
 					const data = {
-						posterFirstName: currentUser.firstName,
-						posterLastName: currentUser.lastName,
-						posterId: currentUser.id,
 						body: this.state.comment,
+						posterFirstName: currentUser.firstName,
+						posterId: currentUser.id,
+						posterLastName: currentUser.lastName,
 						title: 'Comment', // Title is not optional...
 					};
 					if (editMode && comment) {
@@ -80,21 +95,21 @@ class AddComment extends Component {
 					{error || null}
 				</p>
 				<textarea
-					value={this.state.comment}
-					name="comment"
 					id="comment"
-					rows="5"
+					name="comment"
 					onChange={this.onChange}
 					placeholder="Write a response..."
+					rows="5"
+					value={this.state.comment}
 				/>
 				<div className={styles.AddComment__ctaGroup}>
 					{this.props.editMode && this.props.comment ? (
 						<SubmitButton red text="Delete" onClick={this.onDelete} />
 					) : null}
 					<SubmitButton
-						text="Submit"
 						disable={!(comment.length >= 10 && comment.length <= 255)}
 						onClick={this.onSubmit}
+						text="Submit"
 					/>
 				</div>
 			</section>

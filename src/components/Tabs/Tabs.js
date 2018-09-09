@@ -1,3 +1,4 @@
+// https://github.com/Puritanic/React-Tabs.
 import React, { Component } from 'react';
 import styles from './Tabs.module.css';
 

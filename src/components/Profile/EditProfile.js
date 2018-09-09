@@ -1,60 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import avatarImg from '../../assets/avatar.jpg';
 import { updateUser } from '../../actions/auth';
-import styles from './Profile.module.css';
-import formStyles from '../Auth/Form.module.css';
-import SubmitButton from '../Buttons/SubmitButton';
+import avatarImg from '../../assets/avatar.jpg';
 import Button from '../Buttons/Button';
+import formStyles from '../Auth/Form.module.css';
+import styles from './Profile.module.css';
+import SubmitButton from '../Buttons/SubmitButton';
 
-class EditProfile extends Component {
-	render() {
-		const { errors, touched, user } = this.props;
+const EditProfile = ({ errors, touched, user }) => (
+	<section className={styles.Profile}>
+		<img src={avatarImg} alt="Avatar" />
 
-		return (
-			<section className={styles.Profile}>
-				<img src={avatarImg} alt="Avatar" />
+		<Form style={{ marginTop: '2rem' }} className={formStyles.Form}>
+			<div className={formStyles.Form__group}>
+				<Field
+					className={formStyles.Login__form__input}
+					id="firstName"
+					name="firstName"
+					placeholder="First Name"
+					type="text"
+				/>
+				<div>
+					{touched.firstName &&
+						errors.firstName && <p className={formStyles.Form__error}>{errors.firstName}</p>}
+				</div>
+			</div>
+			<div className={formStyles.Form__group}>
+				<Field
+					className={formStyles.Login__form__input}
+					id="lastName"
+					name="lastName"
+					placeholder="Last Name"
+					type="lastName"
+				/>
+				<div>
+					{touched.lastName && errors.lastName && <p className={formStyles.Form__error}>{errors.lastName}</p>}
+				</div>
+			</div>
+			<div className={formStyles.Form__action}>
+				<Button small red text="Cancel" to={`/user/${user.id}`} />
+				<SubmitButton text="Save changes" />
+			</div>
+		</Form>
+	</section>
+);
 
-				<Form style={{ marginTop: '2rem' }} className={formStyles.Form}>
-					<div className={formStyles.Form__group}>
-						<Field
-							className={formStyles.Login__form__input}
-							type="text"
-							name="firstName"
-							id="firstName"
-							placeholder="First Name"
-						/>
-						<div>
-							{touched.firstName &&
-								errors.firstName && <p className={formStyles.Form__error}>{errors.firstName}</p>}
-						</div>
-					</div>
-					<div className={formStyles.Form__group}>
-						<Field
-							className={formStyles.Login__form__input}
-							type="lastName"
-							name="lastName"
-							id="lastName"
-							placeholder="Last Name"
-						/>
-						<div>
-							{touched.lastName &&
-								errors.lastName && <p className={formStyles.Form__error}>{errors.lastName}</p>}
-						</div>
-					</div>
-					<div className={formStyles.Form__action}>
-						<Button small red text="Cancel" to={`/user/${user.id}`} />
-						<SubmitButton text="Save changes" />
-					</div>
-				</Form>
-			</section>
-		);
-	}
-}
+EditProfile.propTypes = {
+	user: PropTypes.shape({
+		id: PropTypes.number.isRequired,
+	}).isRequired,
+	updateUser: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
 	user: state.auth.user,

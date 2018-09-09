@@ -20,10 +20,10 @@ const LoginForm = ({ errors, touched }) => {
 			<div className={styles.Form__group}>
 				<Field
 					className={styles.Login__form__input}
-					type="password"
-					name="password"
 					id="pass"
+					name="password"
 					placeholder="Password"
+					type="password"
 				/>
 				<div>
 					{touched.password && errors.password && <p className={styles.Form__error}>{errors.password}</p>}

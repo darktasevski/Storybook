@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import avatarImg from '../../assets/avatar.jpg';
 import { fetchUser } from '../../actions/user';
-import styles from './Profile.module.css';
+import avatarImg from '../../assets/avatar.jpg';
 import Button from '../Buttons/Button';
+import styles from './Profile.module.css';
 
 class Profile extends Component {
+	static propTypes = {
+		fetchUser: PropTypes.func.isRequired,
+		clearProfile: PropTypes.func.isRequired,
+		user: PropTypes.shape({
+			id: PropTypes.number,
+			firstName: PropTypes.string,
+			lastName: PropTypes.string,
+			email: PropTypes.string,
+		}),
+		profile: PropTypes.shape({
+			id: PropTypes.number,
+			firstName: PropTypes.string,
+			lastName: PropTypes.string,
+			email: PropTypes.string,
+		}),
+	};
+
 	componentDidMount = () => {
 		if (this.props.match.params.id) {
 			const { id } = this.props.match.params;
@@ -26,8 +44,6 @@ class Profile extends Component {
 			right: '1rem',
 		};
 		const { user, profile } = this.props;
-		console.log('profile', user, profile);
-
 		const userData = this.props.location.pathname.includes('/me') ? user : profile;
 
 		return (

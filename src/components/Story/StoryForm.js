@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
@@ -21,11 +22,20 @@ const schema = Yup.object().shape({
 });
 
 class StoryForm extends Component {
+	static propTypes = {
+		comments: PropTypes.arrayOf(PropTypes.object),
+		createStory: PropTypes.func.isRequired,
+		deleteStory: PropTypes.func.isRequired,
+		fetchStories: PropTypes.func.isRequired,
+		stories: PropTypes.arrayOf(PropTypes.object),
+		user: PropTypes.shape({ id: PropTypes.number.isRequired }),
+	};
+
 	state = {
-		story: {},
-		title: '',
 		body: '',
 		isValid: false,
+		story: {},
+		title: '',
 	};
 
 	componentDidMount() {
@@ -66,11 +76,11 @@ class StoryForm extends Component {
 				if (valid) {
 					const { user, createStory, history } = this.props;
 					const data = {
-						posterFirstName: user.firstName,
-						posterLastName: user.lastName,
-						posterEmail: user.email,
-						posterId: user.id,
 						body: this.state.body,
+						posterEmail: user.email,
+						posterFirstName: user.firstName,
+						posterId: user.id,
+						posterLastName: user.lastName,
 						title: this.state.title,
 					};
 					console.log('data', data);
@@ -103,12 +113,12 @@ class StoryForm extends Component {
 					</div>
 					<div className={styles.StoryForm__group}>
 						<textarea
-							value={this.state.comment}
-							name="body"
 							id="body"
-							rows="15"
+							name="body"
 							onChange={this.onChange}
 							placeholder="Tell a story..."
+							rows="15"
+							value={this.state.comment}
 						/>
 						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
 							{body.length > 255 ? 'Body must be between 10 and 255 characters' : null}
@@ -121,10 +131,10 @@ class StoryForm extends Component {
 						this.props.user.id === story.posterId ? (
 							<Button
 								customStyles={btnStyles}
+								onClick={() => this.props.deleteStory(story.id, this.props.history)}
+								red
 								text="Delete Story"
 								to="#"
-								red
-								onClick={() => this.props.deleteStory(story.id, this.props.history)}
 							/>
 						) : null}
 					</div>
@@ -134,9 +144,9 @@ class StoryForm extends Component {
 	}
 }
 const mapDispatchToProps = dispatch => ({
-	fetchStories: () => dispatch(fetchStories()),
 	createStory: (data, history) => dispatch(createStory(data, history)),
 	deleteStory: (id, history) => dispatch(deleteStory(id, history)),
+	fetchStories: () => dispatch(fetchStories()),
 });
 
 const mapStateToProps = (state, ownProps) => ({
