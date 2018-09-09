@@ -12,7 +12,7 @@
 
 	&__body {
 		padding: $md;
-		width: 60%;
+		width: $container-small-width;
 		justify-self: center;
 		text-align: justify;
 		font-weight: 300;
@@ -27,11 +27,11 @@
 		display: block;
 		object-fit: cover;
 		padding: 0 $xxl;
-		width: 70%;
+		width: $container-small-width;
 	}
 	&__comments {
 		padding-bottom: $md;
-		width: 80%;
+		width: $container-default-width;
 		margin: 0 auto;
 	}
 }

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import styles from './Header.module.css';
+import styles from './Nav.module.css';
 import Logo from '../Common/Logo';
 import Button from '../Buttons/Button';
 import ProfileButton from '../Buttons/ProfileButton';
