@@ -54,3 +54,19 @@ export const createStory = (storyData, history) => async dispatch => {
 		return dispatch({ type: types.CREATE_STORY_FAILURE, payload: err });
 	}
 };
+
+export const deleteStory = (id, history) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.delete(`${baseURL}/api/v1/article/${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		console.log('DATA', data);
+		dispatch({ type: types.DELETE_STORY_SUCCESS, payload: id });
+		history.push('/');
+	} catch (err) {
+		return dispatch({ type: types.DELETE_STORY_FAILURE, payload: err });
+	}
+};

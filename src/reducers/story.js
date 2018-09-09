@@ -39,6 +39,18 @@ export default (state = initialState, action) => {
 				isLoading: false,
 				error: action.payload,
 			};
+		case types.DELETE_STORY_SUCCESS:
+			return {
+				...state,
+				stories: state.stories.filter(story => story.id !== action.payload),
+				isLoading: false,
+			};
+		case types.DELETE_STORY_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.payload,
+			};
 		case types.CREATE_COMMENT_SUCCESS:
 			return {
 				...state,

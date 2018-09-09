@@ -11,10 +11,9 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 		<nav className={styles.Nav}>
 			<Logo />
 			<div className={styles.Nav__links}>
-				<NavLink to="/">News</NavLink>
-				<NavLink to="/">Nature</NavLink>
-				<NavLink to="/">Travel</NavLink>
-				<NavLink to="/">Culture</NavLink>
+				<NavLink to="/">Story Feed</NavLink>
+				<NavLink to="/">Story of the day</NavLink>
+				<NavLink to="/">About</NavLink>
 			</div>
 			<div className={styles.Nav__links__right}>
 				{isAuthenticated ? (
@@ -29,6 +28,5 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 		</nav>
 	);
 };
-// Profile link with dropdown in place of logout button?
 
 export default Nav;

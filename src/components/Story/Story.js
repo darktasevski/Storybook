@@ -5,6 +5,7 @@ import Image from 'react-graceful-image';
 import moment from 'moment';
 
 import Footer from '../Footer/Footer';
+import Button from '../Buttons/Button';
 import Heading from '../Common/Heading';
 import Comment from '../Comment/Comment';
 import AddComment from '../Comment/AddComment';
@@ -38,6 +39,11 @@ class Story extends Component {
 	};
 
 	render() {
+		const btnStyles = {
+			position: 'absolute',
+			bottom: '1rem',
+			right: '1rem',
+		};
 		const {
 			auth: { user, isAuthenticated },
 		} = this.props;
@@ -53,6 +59,9 @@ class Story extends Component {
 					author={`${story.posterFirstName} ${story.posterLastName}`}
 				/>
 				<article className={styles.Story}>
+					{story.posterId === user.id ? (
+						<Button customStyles={btnStyles} text="Edit Story" small to={`/story/edit/${story.id}`} />
+					) : null}
 					<p className={styles.Story__body}>
 						{story.body} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 						incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation

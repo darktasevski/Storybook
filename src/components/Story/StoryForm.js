@@ -3,10 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import { createStory } from '../../actions/story';
+import { createStory, deleteStory, fetchStories } from '../../actions/story';
 import styles from './StoryForm.module.css';
 
 import SubmitButton from '../Buttons/SubmitButton';
+import Button from '../Buttons/Button';
 
 const schema = Yup.object().shape({
 	title: Yup.string()
@@ -19,11 +20,29 @@ const schema = Yup.object().shape({
 		.required('Story body is required'),
 });
 
-class NewStory extends Component {
+class StoryForm extends Component {
 	state = {
+		story: {},
 		title: '',
 		body: '',
 		isValid: false,
+	};
+
+	componentDidMount() {
+		if (this.props.match.params.id) {
+			this.props.fetchStories();
+		}
+	}
+
+	componentDidUpdate = (prevProps, prevState) => {
+		if (prevProps.stories !== this.props.stories && this.props.stories.length) {
+			if (this.props.match.params.id) {
+				const { id } = this.props.match.params;
+				const story = this.props.stories.find(story => story.id === parseInt(id, 10));
+
+				this.setState({ story });
+			}
+		}
 	};
 
 	onChange = e => {
@@ -62,7 +81,16 @@ class NewStory extends Component {
 	};
 
 	render() {
-		const { title, body } = this.state;
+		const { title, body, story } = this.state;
+
+		const btnStyles = {
+			position: 'absolute',
+			top: '1rem',
+			right: '1rem',
+		};
+
+		console.log(this.props);
+		console.log(this.state);
 
 		return (
 			<section className={styles.StoryForm}>
@@ -87,7 +115,18 @@ class NewStory extends Component {
 						</small>
 					</div>
 					<div className={styles.StoryForm__group}>
-						<SubmitButton text="Publish Story" big disable={!this.canSubmit()} onClick={this.onSubmit} />
+						<SubmitButton text="Publish Story" disable={!this.canSubmit()} onClick={this.onSubmit} />
+						{story &&
+						this.props.location.pathname.includes('edit') &&
+						this.props.user.id === story.posterId ? (
+							<Button
+								customStyles={btnStyles}
+								text="Delete Story"
+								to="#"
+								red
+								onClick={() => this.props.deleteStory(story.id, this.props.history)}
+							/>
+						) : null}
 					</div>
 				</div>
 			</section>
@@ -95,16 +134,19 @@ class NewStory extends Component {
 	}
 }
 const mapDispatchToProps = dispatch => ({
+	fetchStories: () => dispatch(fetchStories()),
 	createStory: (data, history) => dispatch(createStory(data, history)),
+	deleteStory: (id, history) => dispatch(deleteStory(id, history)),
 });
 
 const mapStateToProps = (state, ownProps) => ({
 	user: state.auth.user,
+	stories: state.stories.stories,
 });
 
 export default withRouter(
 	connect(
 		mapStateToProps,
 		mapDispatchToProps
-	)(NewStory)
+	)(StoryForm)
 );

@@ -35,20 +35,20 @@ const AppRouter = props => (
 						path="/story/new"
 						component={StoryForm}
 					/>
-					<Route isAuthenticated={props.isAuthenticated} path="/story/:id" component={Story} />
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/story/edit/:id"
 						component={StoryForm}
 					/>
+					<Route isAuthenticated={props.isAuthenticated} exact path="/story/:id" component={Story} />
 					<Route isAuthenticated={props.isAuthenticated} exact path="/user/:id" component={Profile} />
 					<PrivateRoute
 						isAuthenticated={props.isAuthenticated}
 						path="/user/edit/:id"
 						component={EditProfile}
 					/>
-					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/auth" component={Auth} />
 					<PrivateRoute isAuthenticated={props.isAuthenticated} path="/auth/me" component={Profile} />
+					<PublicRoute isAuthenticated={props.isAuthenticated} exact path="/auth" component={Auth} />
 					<Redirect to="/" /> {/*// Custom 404?*/}
 				</Switch>
 			</div>

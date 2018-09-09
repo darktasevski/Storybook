@@ -12,6 +12,9 @@ export const types = new KeyMirror({
 	CREATE_STORY_SUCCESS: null,
 	CREATE_STORY_FAILURE: null,
 
+	DELETE_STORY_SUCCESS: null,
+	DELETE_STORY_FAILURE: null,
+
 	FETCH_COMMENTS: null,
 	FETCH_COMMENTS_SUCCESS: null,
 	FETCH_COMMENTS_FAILURE: null,
