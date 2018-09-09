@@ -28,7 +28,7 @@ export const getUserToken = (email, password, history) => async dispatch => {
 		dispatch({ type: types.VALIDATE_USER_SUCCESS, payload: user });
 		history.push('/');
 	} catch (err) {
-		return dispatch({ type: types.VALIDATE_USER_FAILURE, payload: 'Authentication error' });
+		return dispatch({ type: types.ACTION_ERROR, payload: 'Authentication error' });
 	}
 };
 
@@ -38,7 +38,7 @@ export const registerUser = (userData, changeTab) => async dispatch => {
 		changeTab(1);
 		dispatch({ type: types.REGISTER_USER_SUCCESS });
 	} catch (err) {
-		return dispatch({ type: types.VALIDATE_USER_FAILURE, payload: 'Authentication error' });
+		return dispatch({ type: types.AUTH_ERROR, payload: 'Authentication error' });
 	}
 };
 
@@ -74,6 +74,6 @@ export const updateUser = userData => async dispatch => {
 		await localStorage.setItem('user', JSON.stringify(data));
 		dispatch({ type: types.UPDATE_USER_SUCCESS, payload: data });
 	} catch (err) {
-		dispatch({ type: types.UPDATE_USER_FAILURE, payload: err });
+		dispatch({ type: types.AUTH_ERROR, payload: err });
 	}
 };

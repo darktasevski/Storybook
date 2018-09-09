@@ -16,8 +16,6 @@ export default (state = initialState, action) => {
 				err: null,
 				user: action.payload,
 			};
-		case types.VALIDATE_USER_FAILURE:
-			return { isAuthenticated: false, err: action.payload };
 		case types.SET_CURRENT_USER:
 			return {
 				...state,
@@ -31,16 +29,12 @@ export default (state = initialState, action) => {
 				isAuthenticated: !isEmpty(action.payload),
 				user: action.payload,
 			};
-		case types.UPDATE_USER_FAILURE:
-			return {
-				...state,
-				isAuthenticated: !isEmpty(action.payload),
-				err: action.payload,
-			};
 		case types.REGISTER_USER_SUCCESS:
 			return { ...state, msg: 'Registration successful. You can now log in.' };
 		case types.CLEAR_USER:
 			return { ...initialState };
+		case types.AUTH_ERROR:
+			return { isAuthenticated: false, err: action.payload };
 		default:
 			return state;
 	}

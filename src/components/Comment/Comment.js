@@ -24,7 +24,16 @@ export default class Comment extends Component {
 		const { comment, storyId, currentUser } = this.props;
 		return (
 			<article className={styles.Comment}>
-				<Button to="#" small customStyles={btnStyles} text="Edit" onClick={this.toggleEditMode} />
+				{currentUser.id === comment.posterId ? (
+					<Button
+						to="#"
+						small
+						customStyles={btnStyles}
+						text={this.state.editMode ? 'Cancel' : 'Edit'}
+						onClick={this.toggleEditMode}
+					/>
+				) : null}
+
 				{!this.state.editMode ? (
 					<Fragment>
 						<Link to={`/user/${comment.posterId}`}>

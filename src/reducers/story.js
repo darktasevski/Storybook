@@ -21,23 +21,11 @@ export default (state = initialState, action) => {
 				stories: action.payload,
 				isLoading: false,
 			};
-		case types.FETCH_STORIES_FAILURE:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
-			};
 		case types.CREATE_STORY_SUCCESS:
 			return {
 				...state,
 				stories: [action.payload, ...state.stories],
 				isLoading: false,
-			};
-		case types.CREATE_STORY_FAILURE:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
 			};
 		case types.DELETE_STORY_SUCCESS:
 			return {
@@ -45,23 +33,11 @@ export default (state = initialState, action) => {
 				stories: state.stories.filter(story => story.id !== action.payload),
 				isLoading: false,
 			};
-		case types.DELETE_STORY_FAILURE:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
-			};
 		case types.CREATE_COMMENT_SUCCESS:
 			return {
 				...state,
 				comments: [action.payload, ...state.comments],
 				isLoading: false,
-			};
-		case types.CREATE_COMMENT_FAILURE:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
 			};
 		case types.UPDATE_COMMENT_SUCCESS: {
 			const filteredComments = state.comments.filter(c => c.id !== action.payload.id);
@@ -71,12 +47,6 @@ export default (state = initialState, action) => {
 				isLoading: false,
 			};
 		}
-		case types.UPDATE_COMMENT_FAILURE:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
-			};
 		case types.REMOVE_COMMENT_SUCCESS: {
 			const filteredComments = state.comments.filter(c => c.id !== action.payload);
 			return {
@@ -96,7 +66,7 @@ export default (state = initialState, action) => {
 				isLoading: false,
 				comments: action.payload,
 			};
-		case types.FETCH_COMMENTS_FAILURE:
+		case types.DATA_ERROR:
 			return {
 				...state,
 				isLoading: false,

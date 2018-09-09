@@ -72,6 +72,8 @@ class AddComment extends Component {
 	render() {
 		const { comment, error } = this.state;
 
+		console.log(this.props);
+
 		return (
 			<section className={styles.AddComment}>
 				<p style={{ textAlign: 'center' }} className={styles.AddComment__error}>

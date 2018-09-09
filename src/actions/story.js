@@ -9,7 +9,7 @@ export const fetchStories = () => async dispatch => {
 		const { data } = stories;
 		return dispatch({ type: types.FETCH_STORIES_SUCCESS, payload: data });
 	} catch (err) {
-		return dispatch({ type: types.FETCH_STORIES_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -19,7 +19,7 @@ export const fetchComments = id => async dispatch => {
 		const { data } = await axios.get(`${baseURL}/api/v1/article/${id}/comment`);
 		return dispatch({ type: types.FETCH_COMMENTS_SUCCESS, payload: data });
 	} catch (err) {
-		return dispatch({ type: types.FETCH_COMMENTS_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -34,7 +34,7 @@ export const createComment = (id, commentData) => async dispatch => {
 		});
 		return dispatch({ type: types.CREATE_COMMENT_SUCCESS, payload: data });
 	} catch (err) {
-		return dispatch({ type: types.CREATE_COMMENT_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -48,7 +48,7 @@ export const removeComment = (aid, cid) => async dispatch => {
 		});
 		return dispatch({ type: types.REMOVE_COMMENT_SUCCESS, payload: cid });
 	} catch (err) {
-		return dispatch({ type: types.REMOVE_COMMENT_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -63,7 +63,7 @@ export const updateComment = (id, commentData) => async dispatch => {
 		});
 		return dispatch({ type: types.UPDATE_COMMENT_SUCCESS, payload: data });
 	} catch (err) {
-		return dispatch({ type: types.UPDATE_COMMENT_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -80,7 +80,7 @@ export const createStory = (storyData, history) => async dispatch => {
 		dispatch({ type: types.CREATE_STORY_SUCCESS, payload: data });
 		history.push(`/story/${data.id}`);
 	} catch (err) {
-		return dispatch({ type: types.CREATE_STORY_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
 
@@ -96,6 +96,6 @@ export const deleteStory = (id, history) => async dispatch => {
 		dispatch({ type: types.DELETE_STORY_SUCCESS, payload: id });
 		history.push('/');
 	} catch (err) {
-		return dispatch({ type: types.DELETE_STORY_FAILURE, payload: err });
+		return dispatch({ type: types.DATA_ERROR, payload: err });
 	}
 };
