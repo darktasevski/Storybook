@@ -28,10 +28,10 @@ export default (state = initialState, action) => {
 				isLoading: false,
 			};
 		case types.UPDATE_STORY_SUCCESS: {
-			const filteredStories = state.stories.filter(story => story.id !== action.payload.id);
+			// const filteredStories = state.stories.filter(story => story.id !== action.payload.id);
 			return {
 				...state,
-				stories: [action.payload, ...filteredStories],
+				// stories: [action.payload, ...filteredStories],
 				isLoading: false,
 			};
 		}
