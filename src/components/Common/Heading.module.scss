@@ -14,8 +14,9 @@
 	&__social {
 		font-size: $sm;
 
-		& span:first-of-type {
-			margin-right: $sm;
+		& strong {
+			color: $text-dark;
+			cursor: pointer;
 		}
 	}
 
