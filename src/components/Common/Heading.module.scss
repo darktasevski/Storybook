@@ -20,6 +20,12 @@
 		}
 	}
 
+	&__shareIcon {
+		position: relative;
+		top: 2px;
+		margin-right: 5px;
+	}
+
 	&__posted {
 		font-weight: 300;
 		font-size: 90%;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import SVGIcon from '../SVGIcon/SVGIcon';
 
 import { fetchStories } from '../../actions/story';
 import Heading from '../Common/Heading';
@@ -26,8 +27,15 @@ class Home extends Component {
 					{stories.map(story => (
 						<StoryBlock story={story} key={story.id} />
 					))}
+					{isLoading ? (
+						<SVGIcon
+							wrapperClassName={`${styles.Home__centered} ${styles.Home__spinner}`}
+							icon="Spinner"
+							size="5rem"
+						/>
+					) : null}
 					{!isLoading && stories.length === 0 ? (
-						<p className={styles.Home__noStories}>No published stories.</p>
+						<p className={styles.Home__centered}>No published stories.</p>
 					) : null}
 				</div>
 			</div>

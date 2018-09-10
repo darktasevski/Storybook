@@ -20,7 +20,7 @@ const StoryBlock = ({ story }) => {
 				<Image
 					alt="Story's Unsplash pic"
 					style={{ height: '100%', width: '100%' }}
-					src="https://source.unsplash.com/8peGuud5cEw"
+					src="https://source.unsplash.com/5_NaYVZSp_Y"
 				/>
 			</Link>
 		</div>
