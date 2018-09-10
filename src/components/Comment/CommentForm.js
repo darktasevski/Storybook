@@ -99,7 +99,7 @@ class CommentForm extends Component {
 					name="comment"
 					onChange={this.onChange}
 					placeholder="Write a response..."
-					rows="5"
+					rows="4"
 					value={this.state.comment}
 				/>
 				<div className={styles.AddComment__ctaGroup}>
