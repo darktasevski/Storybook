@@ -1,21 +1,40 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .Footer {
 	position: relative;
 	bottom: 0;
 	height: 30rem;
 	margin: 0 -12.5%;
-	background: #202124;
+	background: $text-dark;
 	padding-bottom: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
+	& small {
+		text-align: center;
+		background: $footer-dark;
+		font-size: 90%;
+	}
+
 	&__content {
-		padding: $md $xxl;
+		// padding: $md $xxl;
 		display: flex;
 		height: 10rem;
 		justify-content: space-between;
+
+		& aside {
+			display: flex;
+			flex: 1;
+			justify-content: center;
+			align-items: center;
+			border-right: 1px solid $secondary-dark;
+
+			&:last-of-type {
+				border-right: none;
+			}
+		}
 	}
 
 	&__bottom {
@@ -24,6 +43,12 @@
 		left: 0;
 		right: 0;
 		height: 5rem;
-		background: #1c1d20;
+		background: $footer-dark;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	@include respond(phone) {
+		height: 15rem;
 	}
 }

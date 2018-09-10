@@ -1,4 +1,5 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .StoryForm {
 	background: $comment-bg;
@@ -50,6 +51,25 @@
 			&:active {
 				outline: 1px solid $gray;
 			}
+		}
+	}
+	@include respond(tab-port) {
+		margin-top: 16rem;
+		padding: $lg $xs;
+		min-height: 70%;
+
+		&__form {
+			width: 100%;
+			padding: $md 0;
+		}
+	}
+
+	@include respond(phone) {
+		margin-top: 3rem;
+		padding: $lg $xs;
+
+		&__group {
+			padding: $xs;
 		}
 	}
 }

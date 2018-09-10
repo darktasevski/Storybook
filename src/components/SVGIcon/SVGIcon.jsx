@@ -36,7 +36,7 @@ SVGIcon.defaultProps = {
 SVGIcon.propTypes = {
 	icon: PropTypes.string.isRequired,
 	styles: PropTypes.string,
-	size: PropTypes.number,
+	size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	width: PropTypes.number,
 	height: PropTypes.number,
 	fill: PropTypes.string,

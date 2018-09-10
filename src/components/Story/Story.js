@@ -20,7 +20,7 @@ class Story extends Component {
 		stories: PropTypes.arrayOf(PropTypes.object),
 		comments: PropTypes.arrayOf(PropTypes.object),
 		auth: PropTypes.shape({
-			user: PropTypes.shape({ id: PropTypes.number.isRequired }),
+			user: PropTypes.shape({ id: PropTypes.number }),
 			isAuthenticated: PropTypes.bool,
 		}),
 	};

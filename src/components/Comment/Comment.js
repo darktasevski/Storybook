@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import moment from 'moment';
+import SVGIcon from '../SVGIcon/SVGIcon';
 
 import styles from './Comment.module.css';
 import avatarImg from '../../assets/avatar.jpg';
@@ -29,22 +29,36 @@ export default class Comment extends Component {
 	toggleEditMode = () => this.setState({ editMode: !this.state.editMode });
 
 	render() {
-		const btnStyles = {
-			position: 'absolute',
-			top: '1rem',
-			right: '1rem',
-		};
 		const { comment, storyId, currentUser } = this.props;
 		return (
 			<article className={styles.Comment}>
 				{currentUser.id === comment.posterId ? (
-					<Button
-						customStyles={btnStyles}
-						onClick={this.toggleEditMode}
-						small
-						text={this.state.editMode ? 'Cancel' : 'Edit'}
-						to="#"
-					/>
+					<Fragment>
+						{!this.state.editMode ? (
+							<SVGIcon
+								handleClick={this.toggleEditMode}
+								icon="Edit2"
+								size="2rem"
+								fill="#eb7f76"
+								wrapperClassName={styles.Icon}
+							/>
+						) : (
+							<SVGIcon
+								handleClick={this.toggleEditMode}
+								icon="CloseIco"
+								size="2rem"
+								fill="#eb7f76"
+								wrapperClassName={styles.CloseIcon}
+							/>
+						)}
+						<Button
+							customClass={styles.btnStyles}
+							onClick={this.toggleEditMode}
+							small
+							text={this.state.editMode ? 'Cancel' : 'Edit'}
+							to="#"
+						/>
+					</Fragment>
 				) : null}
 
 				{!this.state.editMode ? (

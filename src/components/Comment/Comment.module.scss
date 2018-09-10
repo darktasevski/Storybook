@@ -39,7 +39,7 @@
 	}
 
 	@include respond(phone) {
-		padding: $md $lg $md $xs;
+		padding: $md 0;
 
 		&__content {
 			padding: 0 $lg 0 $sm;
@@ -48,7 +48,39 @@
 			position: absolute;
 			top: 1rem;
 			right: 1rem;
+			width: 4rem;
+			height: 4rem;
 		}
+	}
+}
+
+.btnStyles {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+
+	@include respond(phone) {
+		display: none;
+	}
+}
+
+.Icon {
+	display: none;
+	@include respond(phone) {
+		display: block;
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+	}
+}
+
+.CloseIcon {
+	display: none;
+	@include respond(phone) {
+		display: block;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
 	}
 }
 
@@ -97,6 +129,17 @@
 
 		&:disabled {
 			cursor: not-allowed;
+		}
+	}
+
+	@include respond(phone) {
+		padding: 1rem;
+		& textarea {
+			padding: $xs;
+			width: 80%;
+			font-size: 90%;
+			height: 8rem;
+			margin: 0 auto;
 		}
 	}
 }

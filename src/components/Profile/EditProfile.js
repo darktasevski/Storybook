@@ -43,7 +43,7 @@ const EditProfile = ({ errors, touched, user }) => (
 				</div>
 			</div>
 			<div className={formStyles.Form__action}>
-				<Button small red text="Cancel" to={`/user/${user.id}`} />
+				<Button small red text="Cancel" to={`/auth/me`} />
 				<SubmitButton text="Save changes" />
 			</div>
 		</Form>

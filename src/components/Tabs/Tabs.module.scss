@@ -1,10 +1,15 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .Tabs {
 	width: $container-medium-width;
 	margin: auto;
 	background: white;
 	box-shadow: 0px 10px 40px hsla(0, 0%, 0%, 0.25);
+
+	@include respond(tab-port) {
+		min-width: 100%;
+	}
 }
 
 .tabs {

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
+import SVGIcon from '../SVGIcon/SVGIcon';
 
 import { fetchUser } from '../../actions/user';
 import avatarImg from '../../assets/avatar.jpg';
@@ -49,7 +50,12 @@ class Profile extends Component {
 		return (
 			<section className={styles.Profile}>
 				{this.props.location.pathname.includes('/me') ? (
-					<Button customStyles={btnStyles} text="Edit Profile" small to={`/user/edit/${profile.id}`} />
+					<Fragment>
+						<NavLink to={`/user/edit/${profile.id}`}>
+							<SVGIcon icon="Edit2" size="2.5rem" fill="#eb7f76" wrapperClassName={styles.Icon} />
+						</NavLink>
+						<Button customStyles={btnStyles} text="Edit Profile" small to={`/user/edit/${profile.id}`} />
+					</Fragment>
 				) : null}
 				<img src={avatarImg} alt="Avatar" />
 				<h1 className={styles.Profile__heading}>
@@ -62,9 +68,7 @@ class Profile extends Component {
 					nilgh'ri lw'nafhyar ron tharanaknyth ch' phlegeth s'uhn ya 'fhalmaoth, hafh'drn y-y'hah sll'ha
 					syha'h gothanyth y-Nyarlathotep nach' ee throd. Orr'e ron f'wgah'n c'ai llllyar goka Azathothagl
 					Yoggoth s'uhn uh'e ep, h'hlirgh llll lw'nafh y-shugg ah mg athg uh'e n'ghft shagg, ph'wgah'n
-					Azathoth ee ph'uh'e mg naflsgn'wahl ooboshu chtenff nw. Nyarlathotep shagg orr'e cooboshu wgah'n
-					nagrah'n ah li'hee h'mnahn' Nyarlathotep shtunggli Chaugnar Faugn 'bthnk gof'nn, 'ai ron llll lloig
-					fhtagn y-ehye throd naflHastur R'lyehnyth s'uhn f'syha'h.
+					Azathoth ee ph'uh'e mg naflsgn'wahl ooboshu chtenff nw.
 				</p>
 			</section>
 		);
