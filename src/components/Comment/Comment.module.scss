@@ -1,4 +1,5 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .Comment {
 	background: $comment-bg;
@@ -35,6 +36,19 @@
 
 	&__body {
 		padding-top: $xs;
+	}
+
+	@include respond(phone) {
+		padding: $md $lg $md $xs;
+
+		&__content {
+			padding: 0 $lg 0 $sm;
+		}
+		& img {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+		}
 	}
 }
 

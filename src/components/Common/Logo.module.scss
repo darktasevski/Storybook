@@ -1,6 +1,8 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .Logo {
+	display: block;
 	background: linear-gradient(240deg, $accent-red, $accent-light);
 	padding: $xs $md;
 	color: $primary-light;
@@ -14,5 +16,9 @@
 		padding-bottom: 0;
 		line-height: 150%;
 		border-bottom: 2px solid $accent-light;
+	}
+
+	@include respond(phone) {
+		display: none;
 	}
 }

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import SVGIcon from '../SVGIcon/SVGIcon';
 
 import Button from '../Buttons/Button';
 import Logo from '../Common/Logo';
@@ -14,12 +15,14 @@ const Nav = ({ isAuthenticated, logoutUser, user }) => {
 			<div className={styles.Nav__links}>
 				<NavLink to="/">Story Feed</NavLink>
 				<NavLink to="/">Story of the day</NavLink>
-				<NavLink to="/">About</NavLink>
 			</div>
 			<div className={styles.Nav__links__right}>
 				{isAuthenticated ? (
 					<Fragment>
-						<Button to="/story/new" text="Tell your story" small />
+						<NavLink to="/story/new">
+							<SVGIcon icon="Edit2" size="2.5rem" fill="#eb7f76" wrapperClassName={styles.Icon} />
+						</NavLink>
+						<Button className="navBtn" to="/story/new" text="Tell your story" small />
 						<ProfileButton userId={user.id} logout={logoutUser} />
 					</Fragment>
 				) : (

@@ -1,4 +1,5 @@
 @import '../../styles/shared-styles/variables';
+@import '../../styles/shared-styles/mixins';
 
 .Nav {
 	position: sticky;
@@ -14,10 +15,17 @@
 
 	&__links {
 		display: flex;
+		justify-content: center;
 		padding: 0 $lg;
+		transition: 0.25s;
 
 		& a {
 			margin: 0 $xs;
+			border-bottom: 1px solid transparent;
+
+			&:hover {
+				border-bottom: 1px solid $gray;
+			}
 		}
 	}
 
@@ -28,5 +36,33 @@
 		& img {
 			cursor: pointer;
 		}
+	}
+
+	@include respond(phone) {
+		padding: 0 $xs;
+		font-size: 70%;
+
+		&__links {
+			padding: 0 $xs 0 $md;
+			font-size: 120%;
+		}
+
+		&__links__right {
+			& a[href='/story/new']:last-of-type {
+				display: none;
+			}
+
+			& div:last-of-type {
+				margin-left: 1rem;
+			}
+		}
+	}
+}
+
+.Icon {
+	display: none;
+
+	@include respond(phone) {
+		display: block;
 	}
 }
