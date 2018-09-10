@@ -23,7 +23,7 @@ yarn run start
 
 ## Deployment
 
-Deployed to Heroku, but cant be used there because of CORS.
+[Deployed](https://sc-story-book.herokuapp.com/) to Heroku, but cant be used there because of CORS.
 
 ## Built With
 
