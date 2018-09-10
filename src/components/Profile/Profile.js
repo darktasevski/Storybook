@@ -27,16 +27,16 @@ class Profile extends Component {
 		}),
 	};
 
-	componentDidMount = () => {
+	componentDidMount() {
 		if (this.props.match.params.id) {
 			const { id } = this.props.match.params;
 			this.props.fetchUser(id);
 		}
-	};
+	}
 
-	componentWillUnmount = () => {
+	componentWillUnmount() {
 		this.props.clearProfile();
-	};
+	}
 
 	render() {
 		const btnStyles = {

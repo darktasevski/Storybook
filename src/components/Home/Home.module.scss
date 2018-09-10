@@ -16,6 +16,12 @@
 		grid-column: 1 / 3;
 	}
 
+	&__noStories {
+		grid-column: 1 / 3;
+		text-align: center;
+		font-size: 2rem;
+	}
+
 	@include respond(tab-port) {
 		& div {
 			grid-column: 1 / 3;

@@ -14,9 +14,9 @@ class ProfileButton extends Component {
 		showMenu: false,
 	};
 
-	componentWillUnmount = () => {
+	componentWillUnmount() {
 		document.removeEventListener('click', this.closeMenu);
-	};
+	}
 
 	closeMenu = () =>
 		this.setState({ showMenu: false }, () => {

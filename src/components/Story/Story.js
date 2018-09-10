@@ -36,18 +36,18 @@ class Story extends Component {
 		this.props.fetchComments(id);
 	}
 
-	componentDidUpdate = (prevProps, prevState) => {
+	componentDidUpdate(prevProps) {
 		if (prevProps.stories !== this.props.stories && this.props.stories.length) {
 			const { id } = this.props.match.params;
 			const story = this.props.stories.find(story => story.id === parseInt(id, 10));
 
 			this.setState({ story });
 		}
-	};
+	}
 
-	componentWillUnmount = () => {
+	componentWillUnmount() {
 		this.props.clearComments();
-	};
+	}
 
 	render() {
 		const btnStyles = {

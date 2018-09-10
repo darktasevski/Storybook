@@ -13,18 +13,22 @@ class Home extends Component {
 		fetchStories: PropTypes.func.isRequired,
 	};
 
-	componentDidMount = () => {
+	componentDidMount() {
 		this.props.fetchStories();
-	};
+	}
 
 	render() {
+		const { stories, isLoading } = this.props;
 		return (
 			<div>
 				<Heading heading="Stories" subheading="That make your day" />
 				<div className={styles.Home}>
-					{this.props.stories.map(story => (
+					{stories.map(story => (
 						<StoryBlock story={story} key={story.id} />
 					))}
+					{!isLoading && stories.length === 0 ? (
+						<p className={styles.Home__noStories}>No published stories.</p>
+					) : null}
 				</div>
 			</div>
 		);
@@ -33,6 +37,7 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
 	stories: state.stories.stories,
+	isLoading: state.stories.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({

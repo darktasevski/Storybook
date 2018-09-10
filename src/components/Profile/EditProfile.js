@@ -12,7 +12,7 @@ import formStyles from '../Auth/Form.module.css';
 import styles from './Profile.module.css';
 import SubmitButton from '../Buttons/SubmitButton';
 
-const EditProfile = ({ errors, touched, user }) => (
+const EditProfile = ({ errors, touched }) => (
 	<section className={styles.Profile}>
 		<img src={avatarImg} alt="Avatar" />
 
