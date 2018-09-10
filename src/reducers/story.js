@@ -27,6 +27,14 @@ export default (state = initialState, action) => {
 				stories: [action.payload, ...state.stories],
 				isLoading: false,
 			};
+		case types.UPDATE_STORY_SUCCESS: {
+			const filteredStories = state.stories.filter(story => story.id !== action.payload.id);
+			return {
+				...state,
+				stories: [action.payload, ...filteredStories],
+				isLoading: false,
+			};
+		}
 		case types.DELETE_STORY_SUCCESS:
 			return {
 				...state,

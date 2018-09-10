@@ -76,8 +76,23 @@ export const createStory = (storyData, history) => async dispatch => {
 				'Content-Type': 'application/json',
 			},
 		});
-		console.log('DATA', data);
 		dispatch({ type: types.CREATE_STORY_SUCCESS, payload: data });
+		history.push(`/story/${data.id}`);
+	} catch (err) {
+		return dispatch({ type: types.DATA_ERROR, payload: err });
+	}
+};
+
+export const updateStory = (storyData, history) => async dispatch => {
+	try {
+		const token = await localStorage.getItem('token');
+		const { data } = await axios.put(`${baseURL}/api/v1/article`, storyData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		dispatch({ type: types.UPDATE_STORY_SUCCESS, payload: data });
 		history.push(`/story/${data.id}`);
 	} catch (err) {
 		return dispatch({ type: types.DATA_ERROR, payload: err });

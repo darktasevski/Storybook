@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import { createStory, deleteStory, fetchStories } from '../../actions/story';
+import { createStory, deleteStory, fetchStories, updateStory } from '../../actions/story';
 import styles from './StoryForm.module.css';
 
 import SubmitButton from '../Buttons/SubmitButton';
@@ -32,10 +32,11 @@ class StoryForm extends Component {
 	};
 
 	state = {
-		body: '',
-		isValid: false,
-		story: {},
-		title: '',
+		story: {
+			title: '',
+			body: '',
+		},
+		editMode: false,
 	};
 
 	componentDidMount() {
@@ -44,54 +45,75 @@ class StoryForm extends Component {
 		}
 	}
 
-	componentDidUpdate = (prevProps, prevState) => {
+	componentDidUpdate(prevProps) {
 		if (prevProps.stories !== this.props.stories && this.props.stories.length) {
 			if (this.props.match.params.id) {
 				const { id } = this.props.match.params;
 				const story = this.props.stories.find(story => story.id === parseInt(id, 10));
 
-				this.setState({ story });
+				this.setState({ story, editMode: true });
 			}
 		}
-	};
+	}
 
 	onChange = e => {
 		const { name, value } = e.target;
-		this.setState({ [name]: value });
+
+		this.setState({
+			story: {
+				...this.state.story,
+				[name]: value,
+			},
+		});
 	};
 
 	canSubmit = () => {
-		const { title, body } = this.state;
+		const {
+			story: { title, body },
+		} = this.state;
 		return title.length >= 10 && title.length <= 50 && body.length >= 10 && body.length <= 255;
 	};
 
 	onSubmit = e => {
 		e.preventDefault();
+		const {
+			story: { title, body },
+		} = this.state;
 		schema
 			.isValid({
-				title: this.state.title,
-				body: this.state.body,
+				title: title || '',
+				body: body || '',
 			})
 			.then(valid => {
 				if (valid) {
-					const { user, createStory, history } = this.props;
+					const { user, createStory, history, updateStory } = this.props;
 					const data = {
-						body: this.state.body,
+						title,
+						body,
 						posterEmail: user.email,
 						posterFirstName: user.firstName,
 						posterId: user.id,
 						posterLastName: user.lastName,
-						title: this.state.title,
 					};
 					console.log('data', data);
+					if (this.state.editMode) {
+						data.id = this.state.story.id;
+
+						updateStory(data, history);
+						return this.setState({ story: { title: '', body: '' }, editMode: false });
+					}
 					createStory(data, history);
-					return this.setState({ title: '', body: '' });
+					return this.setState({ story: { title: '', body: '' } });
 				}
 			});
 	};
 
 	render() {
-		const { title, body, story } = this.state;
+		const { location, history, deleteStory, user } = this.props;
+		const {
+			story: { title, body, id, posterId },
+			editMode,
+		} = this.state;
 
 		const btnStyles = {
 			position: 'absolute',
@@ -99,14 +121,18 @@ class StoryForm extends Component {
 			right: '1rem',
 		};
 
-		console.log(this.props);
-		console.log(this.state);
-
 		return (
 			<section className={styles.StoryForm}>
 				<div className={styles.StoryForm__form}>
 					<div className={styles.StoryForm__group}>
-						<input onChange={this.onChange} type="text" name="title" id="title" placeholder="Story Title" />
+						<input
+							onChange={this.onChange}
+							value={title}
+							type="text"
+							name="title"
+							id="title"
+							placeholder="Story Title"
+						/>
 						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
 							{title.length > 50 ? 'Title must be between 10 and 50 characters' : null}
 						</small>
@@ -118,20 +144,22 @@ class StoryForm extends Component {
 							onChange={this.onChange}
 							placeholder="Tell a story..."
 							rows="15"
-							value={this.state.comment}
+							value={body}
 						/>
 						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
 							{body.length > 255 ? 'Body must be between 10 and 255 characters' : null}
 						</small>
 					</div>
 					<div className={styles.StoryForm__group}>
-						<SubmitButton text="Publish Story" disable={!this.canSubmit()} onClick={this.onSubmit} />
-						{story &&
-						this.props.location.pathname.includes('edit') &&
-						this.props.user.id === story.posterId ? (
+						<SubmitButton
+							text={editMode ? 'Save changes' : 'Publish Story'}
+							disable={!this.canSubmit()}
+							onClick={this.onSubmit}
+						/>
+						{location.pathname.includes('edit') && user.id === posterId ? (
 							<Button
 								customStyles={btnStyles}
-								onClick={() => this.props.deleteStory(story.id, this.props.history)}
+								onClick={() => deleteStory(id, history)}
 								red
 								text="Delete Story"
 								to="#"
@@ -147,9 +175,10 @@ const mapDispatchToProps = dispatch => ({
 	createStory: (data, history) => dispatch(createStory(data, history)),
 	deleteStory: (id, history) => dispatch(deleteStory(id, history)),
 	fetchStories: () => dispatch(fetchStories()),
+	updateStory: (storyData, history) => dispatch(updateStory(storyData, history)),
 });
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
 	user: state.auth.user,
 	stories: state.stories.stories,
 });

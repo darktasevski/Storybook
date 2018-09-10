@@ -3,6 +3,7 @@ import KeyMirror from 'keymirror';
 export const types = new KeyMirror({
 	CREATE_STORY_SUCCESS: null,
 	DELETE_STORY_SUCCESS: null,
+	UPDATE_STORY_SUCCESS: null,
 	FETCH_STORIES_SUCCESS: null,
 	FETCH_STORIES: null,
 	FETCH_STORY_SUCCESS: null,
