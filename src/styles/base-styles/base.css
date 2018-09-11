@@ -9,6 +9,27 @@ Media query manager mixin
 1800px:  xlDesktop
 1em === 16px
 */
+.h-centered-text {
+	text-align: center;
+}
+
+.h-ml-xxs {
+	margin-left: 1rem;
+}
+
+.h-mt-xs {
+	margin-top: 2rem;
+}
+
+.h-p-sm {
+	padding: 2rem;
+}
+
+.h-max-size {
+	height: 100%;
+	width: 100%;
+}
+
 html {
 	font-size: 62.5%;
 }
