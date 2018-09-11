@@ -38,8 +38,7 @@
 		"watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"precommit": "lint-staged",
-		"heroku-postbuild": "npm run build"
+		"precommit": "lint-staged"
 	},
 	"lint-staged": {
 		"src/**/*.{js,jsx,json,css}": [
@@ -71,8 +70,5 @@
 	"main": "index.js",
 	"keywords": [],
 	"author": "Darko Tasevski <darktasevski@gmail.com>",
-	"license": "MIT",
-	"resolutions": {
-		"@babel/runtime": "7.0.0-beta.53"
-	}
+	"license": "MIT"
 }
