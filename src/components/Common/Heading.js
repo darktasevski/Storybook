@@ -14,7 +14,7 @@ const Heading = ({ heading, subheading, showSocial, storyMode, date, author }) =
 			<div className={styles.Heading__social}>
 				<span>
 					&hearts; {rand}{' '}
-					<strong style={{ marginLeft: '1rem' }}>
+					<strong className="h-ml-xxs">
 						<SVGIcon icon="ShareSquareO" size={13} wrapperClassName={styles.Heading__shareIcon} />
 						Share
 					</strong>

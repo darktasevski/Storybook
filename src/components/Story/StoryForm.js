@@ -133,7 +133,7 @@ class StoryForm extends Component {
 							id="title"
 							placeholder="Story Title"
 						/>
-						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+						<small className={`${styles.StoryForm__error} h-centered-text`}>
 							{title.length > 50 ? 'Title must be between 10 and 50 characters' : null}
 						</small>
 					</div>
@@ -146,7 +146,7 @@ class StoryForm extends Component {
 							rows="15"
 							value={body}
 						/>
-						<small style={{ textAlign: 'center' }} className={styles.StoryForm__error}>
+						<small className={`${styles.StoryForm__error} h-centered-text`}>
 							{body.length > 255 ? 'Body must be between 10 and 255 characters' : null}
 						</small>
 					</div>

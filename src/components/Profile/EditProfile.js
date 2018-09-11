@@ -16,7 +16,7 @@ const EditProfile = ({ errors, touched }) => (
 	<section className={styles.Profile}>
 		<img src={avatarImg} alt="Avatar" />
 
-		<Form style={{ marginTop: '2rem' }} className={formStyles.Form}>
+		<Form className={`${formStyles.Form} h-mt-xs`}>
 			<div className={formStyles.Form__group}>
 				<Field
 					className={formStyles.Login__form__input}

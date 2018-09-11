@@ -99,7 +99,7 @@ class Story extends Component {
 					{isAuthenticated ? (
 						<CommentForm storyId={story.id} currentUser={user} />
 					) : (
-						<p style={{ textAlign: 'center', padding: '2rem' }}>
+						<p className="h-centered-text h-p-sm">
 							<Link to="/auth">Sign in</Link> to post comments.
 						</p>
 					)}
@@ -108,7 +108,7 @@ class Story extends Component {
 							return <Comment comment={comment} storyId={story.id} currentUser={user} key={comment.id} />;
 						})
 					) : (
-						<p style={{ textAlign: 'center', padding: '2rem' }}>No comments for this story</p>
+						<p className="h-centered-text h-p-sm">No comments for this story</p>
 					)}
 				</section>
 

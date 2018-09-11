@@ -91,9 +91,7 @@ class CommentForm extends Component {
 
 		return (
 			<section className={styles.AddComment}>
-				<p style={{ textAlign: 'center' }} className={styles.AddComment__error}>
-					{error || null}
-				</p>
+				<p className={`${styles.AddComment__error} h-centered-text`}>{error || null}</p>
 				<textarea
 					id="comment"
 					name="comment"
