@@ -1,5 +1,7 @@
 # StoryBook
 
+> Scripptic front-end challenge
+
 Imaginary blog where users can post their short stories
 
 ## Getting Started
